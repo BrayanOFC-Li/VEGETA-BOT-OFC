@@ -73,7 +73,7 @@ apt update && apt upgrade && pkg install -y git nodejs ffmpeg imagemagick yarn
 ```
 
 ```bash
-git clone https://github.com/BrayanOFC/VEGETA-BOT-MB
+git clone https://github.com/BrayanOFC-Li/VEGETA-BOT-MB
 ```
 
 ```bash
@@ -129,7 +129,7 @@ apt update && apt upgrade
 ```
 
 ```bash
-git clone https://github.com/BrayanOFC/VEGETA-BOT-MB && cd VEGETA-BOT-MB 
+git clone https://github.com/BrayanOFC-Li/VEGETA-BOT-MB && cd VEGETA-BOT-MB 
 ```
 
 ```bash
