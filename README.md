@@ -11,7 +11,7 @@
 > ⚡ Versión: **2.13.2**  
 > 👑 Creador: **BrayanOFC – El Príncipe Saiyajin**
 
-![line](https://github.com/BrayanOFC-Li/Lines-Neon-MB/raw/main/assets_/Line-arco.jpg)
+![line](https://github.com/BrayanOFC-Li/Lines-Neon-MB/raw/main/assets_/Line-Arco.jpg)
 
 <div align="center">
 
