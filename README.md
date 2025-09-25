@@ -1,3 +1,4 @@
+
 <h1 align="center">💨 𝑽𝑬𝑮𝑬𝑻𝑨-𝑩𝑶𝑻-𝑴𝑩 💨</h1>
 <p align="center">🐉 ¡El Orgullo Saiyajin convertido en Bot de WhatsApp!</p>
 
@@ -10,7 +11,7 @@
 > ⚡ Versión: **2.13.2**  
 > 👑 Creador: **BrayanOFC – El Príncipe Saiyajin**
 
-![line](https://github.com/BrayanOFC-Li/Lines-Neon-MB/raw/main/assets_/Line-Arco.jpg)
+![line](https://github.com/BrayanOFC-Li/Lines-Neon-MB/raw/main/assets_/Line-arco.jpg)
 
 <div align="center">
 
@@ -20,7 +21,7 @@
 
 </div>
 
-![line](https://github.com/BrayanOFC-Li/Lines-Neon-MB/raw/main/assets_MB/Line-azul.jpg)
+![line](https://github.com/BrayanOFC-Li/Lines-Neon-MB/raw/main/assets_MB/Line-Azul.jpg)
 
 ### ❕️ **Información Saiyajin**
 
@@ -35,7 +36,7 @@
 
 </details>
 
-![line](https://github.com/BrayanOFC-Li/Lines-Neon-MB/raw/main/assets_MB/Logo-Neon.jpg)
+![line](https://github.com/BrayanOFC-Li/Lines-Neon-MB/raw/main/assets_MB/Line-Neon.jpg)
 
 ### 🔮 **Contacto con el Reino Saiyajin**
 
@@ -55,7 +56,7 @@
 ### 🐉 **Descarga el Templo Saiyajin (Termux)** ☁️
 <a href="https://www.mediafire.com/file/llugt4zgj7g3n3u/com.termux_1020.apk/file"><img src="https://qu.ax/finc.jpg" height="125px"></a> 
 
-![line](https://github.com/BrayanOFC-Li/Lines-Neon-MB/raw/main/assets_MB/Logo-verde.jpg)
+![line](https://github.com/BrayanOFC-Li/Lines-Neon-MB/raw/main/assets_MB/Line-verde.jpg)
 </details>
 
 ### 👑 Instalacion para Termux
@@ -89,7 +90,7 @@ npm install
 npm start
 ```
 
-![line](https://github.com/BrayanOFC-Li/Lines-Neon-MB/raw/main/assets_MB/Logo-arco.jpg)
+![line](https://github.com/BrayanOFC-Li/Lines-Neon-MB/raw/main/assets_MB/Line-arco.jpg)
 
 ✨️ Revivir el Ki de Vegeta si se detiene
 
