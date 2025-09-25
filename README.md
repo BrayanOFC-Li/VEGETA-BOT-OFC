@@ -147,7 +147,7 @@ npm start
 
 👑 Propietario Saiyajin
 
-<a href="https://github.com/BrayanOFC"><img src="https://github.com/BrayanOFC.png" width="130" height="130" alt="BrayanOFC"/></a>
+<a href="https://github.com/BrayanOFC-Li"><img src="https://github.com/BrayanOFC-Li.png" width="130" height="130" alt="BrayanOFC-Li"/></a>
 
 
 © Powered By Team BrayanOFC Nexus ⚡︎ – Orgullo Saiyajin🚀
