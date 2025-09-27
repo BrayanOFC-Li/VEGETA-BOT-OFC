@@ -21,32 +21,32 @@ let snh = 'https://tiktok.com'
 let syt = 'https://youtube.com'
 
 global.docs = ['doc1', 'doc2', 'doc3']
-global.nomorown = '18493907272@s.whatsapp.net'
-global.logo = 'https://raw.githubusercontent.com/WillZek/Storage-CB2/main/images/54dfe27a73cf.jpg'
-global.iconorcanal = 'https://raw.githubusercontent.com/WillZek/Storage-CB2/main/images/54dfe27a73cf.jpg'
-global.metanombre = 'Meta AI'
+global.nomorown = '526641784469@s.whatsapp.net'
+global.logo = 'https://files.catbox.moe/2v7j6r.jpg'
+global.iconorcanal = 'https://files.catbox.moe/onsgiy.jpg'
+global.metanombre = 'Meta OI'
 
-let idchannel = '120363420232527331@newsletter'
-let namechannel = 'ᴵᴬᴹ 𝗜𝘁𝘀𝘂𝗸𝗶 𝗡𝗮𝗸𝗮𝗻𝗼-𝗜𝗔⏤͟͟͞͞🌺'
-let icono = 'https://raw.githubusercontent.com/WillZek/Storage-CB2/main/images/2b064a199694.jpg'
-let iconoden = 'https://raw.githubusercontent.com/WillZek/Storage-CB2/main/images/d110942e81b3.jpg'
-let iconodev = 'https://raw.githubusercontent.com/WillZek/Storage-CB2/main/images/d110942e81b3.jpg' 
+let idchannel = '120363394965381607@newsletter'
+let namechannel = '𝚅𝙴𝙶𝙴𝚃𝙰-𝙱𝙾𝚃-𝙼𝙱 Update'
+let icono = 'https://files.catbox.moe/0q5oja.jpg'
+let iconoden = 'https://files.catbox.moe/8x21hh.jpg'
+let iconodev = 'https://files.catbox.moe/8bk08z.jpg' 
 
 global.rwait = '🕒'
 global.done = '✅'
 global.error = '✖️'
 global.msm = '⚠️'
 
-global.emoji = '🌺'
-global.emoji2 = '🌸'
+global.emoji = '💥'
+global.emoji2 = '🐉'
 global.emoji3 = '⚡️'
 global.emoji4 = '🌟'
-global.emoji5 = '☕️'
+global.emoji5 = '🩸'
 
-global.wait = '🌸 Espera un momento...'
-global.waitt = '🌸 Espera un momento...'
-global.waittt = '🌸 Espera un momento...'
-global.waitttt = '🌸 Espera un momento...'
+global.wait = '💥 Espera un momento...'
+global.waitt = '💥 Espera un momento...'
+global.waittt = '💥 Espera un momento...'
+global.waitttt = '💥 Espera un momento...'
 
 var handler = m => m
 handler.all = async function (m) {
@@ -89,11 +89,11 @@ try {
     contextInfo: {
       externalAdReply: {
         showAdAttribution: false,
-        title: "ᴵᴬᴹ 𝗜𝘁𝘀𝘂𝗸𝗶 𝗡𝗮𝗸𝗮𝗻𝗼-𝗜𝗔⏤͟͟͞͞🌺",
+        title: "𝚅𝙴𝙶𝙴𝚃𝙰-𝙱𝙾𝚃-𝙼𝙱 Update🚀",
         body: global.author,
   thumbnail: fs.readFileSync("./src/catalogo.jpg"),
   thumbnailUrl: global.pppkecil,
-        sourceUrl: "https://whatsapp.com/channel/0029VbBQ5sf4NVioq39Efn0v",
+        sourceUrl: "https://whatsapp.com/channel/0029Vb9P9ZU0gcfNusD1jG3d",
         mediaType: 1,
         renderLargerThumbnail: false
       }
@@ -111,7 +111,7 @@ try {
         title: "👋 " + Sapa() + Pagi(),
         body: author,
         mediaUrl: sgc,
-        description: "ᴵᴬᴹ 𝗜𝘁𝘀𝘂𝗸𝗶 𝗡𝗮𝗸𝗮𝗻𝗼-𝗜𝗔⏤͟͟͞͞🌺",
+        description: "𝚅𝙴𝙶𝙴𝚃𝙰-𝙱𝙾𝚃-𝙼𝙱 Update🚀",
         previewType: "PHOTO",
   thumbnail: fs.readFileSync("./src/catalogo2.jpg"),
         sourceUrl: "https://whatsapp.com/channel/0029VbBQ5sf4NVioq39Efn0v",
@@ -131,7 +131,7 @@ try {
         mediaUrl: sgc,
         renderLargerThumbnail: false,
         showAdAttribution: false,
-        sourceId: "ᴵᴬᴹ 𝗜𝘁𝘀𝘂𝗸𝗶 𝗡𝗮𝗸𝗮𝗻𝗼-𝗜𝗔⏤͟͟͞͞🌺",
+        sourceId: "𝚅𝙴𝙶𝙴𝚃𝙰-𝙱𝙾𝚃-𝙼𝙱 Update🚀",
         sourceType: "PDF",
         previewType: "PDF",
         sourceUrl: sgc,
@@ -245,7 +245,7 @@ try {
         newsletterName: namechannel,
       },
       externalAdReply: {
-        title: '𝗔𝗰𝘁𝘂𝗮𝗹𝗶𝘇𝗮𝗻𝗱𝗼 𝗟𝗮 𝗕𝗼𝘁 🌸',
+        title: '𝗔𝗰𝘁𝘂𝗮𝗹𝗶𝘇𝗮𝗻𝗱𝗼 𝐄𝐥 𝗕𝗼𝘁 🔮',
         body: '',
         mediaUrl: null,
         description: null,
@@ -277,7 +277,7 @@ try {
         newsletterName: namechannel,
       },
       externalAdReply: {
-        title: 'ᴵᴬᴹ 𝗜𝘁𝘀𝘂𝗸𝗶 𝗡𝗮𝗸𝗮𝗻𝗼-𝗜𝗔⏤͟͟͞͞🌺',
+        title: '𝚅𝙴𝙶𝙴𝚃𝙰-𝙱𝙾𝚃-𝙼𝙱 Update🚀',
         body: '',
         mediaUrl: null,
         description: null,
@@ -298,7 +298,7 @@ try {
         newsletterName: namechannel,
       },
       externalAdReply: {
-        title: 'ᴵᴬᴹ 𝗜𝘁𝘀𝘂𝗸𝗶 𝗡𝗮𝗸𝗮𝗻𝗼-𝗜𝗔⏤͟͟͞͞🌺',
+        title: '𝚅𝙴𝙶𝙴𝚃𝙰-𝙱𝙾𝚃-𝙼𝙱 Update🚀',
         body: '',
         mediaUrl: null,
         description: null,
@@ -319,7 +319,7 @@ try {
         newsletterName: namechannel,
       },
       externalAdReply: {
-        title: '🔓 𝗔𝗰𝗰𝘀𝗲𝘀𝗼 𝗡𝗼 𝗣𝗲𝗿𝗺𝗶𝘁𝗶𝗱𝗼',
+        title: ' 𝗔𝗰𝗰𝘀𝗲𝘀𝗼 𝗡𝗼 𝗣𝗲𝗿𝗺𝗶𝘁𝗶𝗱𝗼❌',
         body: '',
         mediaUrl: null,
         description: null,
@@ -364,20 +364,20 @@ try {
   global.doc = pickRandom(["application/vnd.openxmlformats-officedocument.presentationml.presentation", "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "application/vnd.openxmlformats-officedocument.wordprocessingml.document", "application/vnd.ms-excel", "application/msword", "application/pdf", "text/rtf"])
 
   global.thumbnailUrl2 = [
-    'https://files.catbox.moe/2jp3y8.jpg'
+    'https://files.catbox.moe/nhn6ac.jpg'
   ]
 
   global.logo = [
-    'https://files.catbox.moe/2jp3y8.jpg'
+    'https://files.catbox.moe/tze2i9.jpg'
   ]
 }
 }
 
 function Fakes() {
-  let Org = pickRandom(["18493907272"])
+  let Org = pickRandom(["526641784469"])
   let Parti = pickRandom([Org + "@s.whatsapp.net", Org + "@c.us"])
   let Remot = pickRandom(["status@broadcast", "120363047752200594@g.us"])
-  let Hai = pickRandom(["¿Qué tal? ", "Hola ", "Hey "])
+  let Hai = pickRandom(["¿𝐐𝐮𝐞 𝐪𝐫𝐥𝐥𝐨? ", "𝐇𝐨𝐥𝐚 ", "𝐇𝐞𝐲 "])
   let Sarapan = "👋 " + Hai + Pagi()
   let Thum = ThumbUrl()
   let fpayment = {
@@ -614,7 +614,7 @@ function ucapan() {
 }
 
 function ThumbUrl() {
-  return pickRandom(['https://files.catbox.moe/2jp3y8.jpg'])
+  return pickRandom(['https://files.catbox.moe/flpxgg.jpg'])
 }
 
 export default handler
