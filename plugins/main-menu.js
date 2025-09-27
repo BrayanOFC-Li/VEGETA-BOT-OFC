@@ -84,7 +84,7 @@ ${commandsForTag.map(menu => menu.help.map(help =>
             caption: menuText,
             contextInfo: {
               isForwarded: true
-           // ...global.rcanal
+            ...global.rcanal
             }
           }
         }
