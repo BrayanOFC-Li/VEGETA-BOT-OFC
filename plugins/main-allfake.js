@@ -113,7 +113,7 @@ try {
         mediaUrl: sgc,
         description: "ᴵᴬᴹ 𝗜𝘁𝘀𝘂𝗸𝗶 𝗡𝗮𝗸𝗮𝗻𝗼-𝗜𝗔⏤͟͟͞͞🌺",
         previewType: "PHOTO",
-  thumbnail: fs.readFileSync("./lib/catalogo.jpg"),
+  thumbnail: fs.readFileSync("./lib/catalogo2.jpg"),
         sourceUrl: "https://whatsapp.com/channel/0029VbBQ5sf4NVioq39Efn0v",
       }
     }
