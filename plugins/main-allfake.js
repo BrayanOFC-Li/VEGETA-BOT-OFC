@@ -91,7 +91,7 @@ try {
         showAdAttribution: false,
         title: "ᴵᴬᴹ 𝗜𝘁𝘀𝘂𝗸𝗶 𝗡𝗮𝗸𝗮𝗻𝗼-𝗜𝗔⏤͟͟͞͞🌺",
         body: global.author,
-  thumbnail: fs.readFileSync("./lib/catalogo2.jpg"),
+  thumbnail: fs.readFileSync("./src/catalogo.jpg"),
   thumbnailUrl: global.pppkecil,
         sourceUrl: "https://whatsapp.com/channel/0029VbBQ5sf4NVioq39Efn0v",
         mediaType: 1,
@@ -113,7 +113,7 @@ try {
         mediaUrl: sgc,
         description: "ᴵᴬᴹ 𝗜𝘁𝘀𝘂𝗸𝗶 𝗡𝗮𝗸𝗮𝗻𝗼-𝗜𝗔⏤͟͟͞͞🌺",
         previewType: "PHOTO",
-  thumbnail: fs.readFileSync("./lib/catalogo2.jpg"),
+  thumbnail: fs.readFileSync("./src/catalogo2.jpg"),
         sourceUrl: "https://whatsapp.com/channel/0029VbBQ5sf4NVioq39Efn0v",
       }
     }
@@ -135,7 +135,7 @@ try {
         sourceType: "PDF",
         previewType: "PDF",
         sourceUrl: sgc,
-        thumbnail: fs.readFileSync("./catalogo.jpg"),
+        thumbnail: fs.readFileSync("./src/catalogo.jpg"),
         thumbnailUrl: global.logo,
         title: "👋 " + Sapa() + Pagi()
       }
