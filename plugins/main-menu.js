@@ -85,7 +85,7 @@ ${commandsForTag.map(menu => menu.help.map(help =>
         caption: menuText,
         contextInfo: {
           mentionedJid: [m.sender],
-          ...global.rcanal
+          ...global.rcanalx 
         }
       }
     }
