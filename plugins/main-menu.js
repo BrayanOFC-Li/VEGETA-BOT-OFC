@@ -4,7 +4,7 @@ import fetch from 'node-fetch'
 
 const botname = global.botname || '❍⏤͟͟͞͞𝙑𝙀𝙂𝙀𝙏𝘼-𝙊𝙁𝘾࿐'
 const creador = 'BrayanOFC 👻'
-const version = 'GALACTIC' 
+const version = '2.13.2' 
 
 let tags = {
   'serbot': 'SUB BOTS',
@@ -21,7 +21,6 @@ let handler = async (m, { conn, usedPrefix: _p }) => {
     let userId = m.mentionedJid?.[0] || m.sender
     let user = global.db.data.users[userId] || { exp: 0, level: 1, premium: false }
 
-    let totalPremium = Object.values(global.db.data.users).filter(u => u.premium).length
 
     let help = Object.values(global.plugins).filter(plugin => !plugin.disabled).map(plugin => ({
       help: Array.isArray(plugin.help) ? plugin.help : (plugin.help ? [plugin.help] : []),
@@ -30,20 +29,6 @@ let handler = async (m, { conn, usedPrefix: _p }) => {
       premium: plugin.premium,
     }))
 
-    let date = new Date()
-    let time = date.toLocaleTimeString('es-MX', { 
-      hour: '2-digit', 
-      minute: '2-digit', 
-      second: '2-digit', 
-      hour12: false 
-    })
-
-    let hour = date.getHours()
-    let saludo = '🌃 Buenas noches'
-    if (hour >= 5 && hour < 12) saludo = '🌄 Buenos días'
-    else if (hour >= 12 && hour < 19) saludo = '🌅 Buenas tardes'
-
-    let uptime = clockString(process.uptime() * 1000)
 
     let menuText = `
 ╔═✪〘 🚀 GALACTIC MISSION REPORT 🚀 〙✪═╗
