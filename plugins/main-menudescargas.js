@@ -35,11 +35,13 @@ ${descargasHelp}
           imageMessage: {
             ...media.imageMessage,
             caption: menuText,
-            contextInfo: {
-              ...global.rcanalden2
-}, { quoted: m })
+            ...global.rcanalden2 
+          }
+        }
+      }
+    }, { userJid: m.sender, quoted: m })
 
-   /*await conn.relayMessage(m.chat, msg.message, { messageId: msg.key.id })*/
+    await conn.relayMessage(m.chat, msg.message, { messageId: msg.key.id })
 
   } catch (e) {
     conn.reply(m.chat, `✖️ Menú de descargas falló.\n\n${e}`, m)
