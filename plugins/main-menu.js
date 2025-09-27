@@ -1,4 +1,4 @@
-//creado y editado por BrayanOFC
+/*creado y editado por BrayanOFC
 import { xpRange } from '../lib/levelling.js'
 import fetch from 'node-fetch'
 
@@ -95,4 +95,4 @@ function clockString(ms) {
 function getRandomEmoji() {
   const emojis = ['🐉', '🎆', '⚡', '🔥', '🌌', '💥']
   return emojis[Math.floor(Math.random() * emojis.length)]
-}
+}*/
