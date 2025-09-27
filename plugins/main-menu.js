@@ -74,6 +74,7 @@ ${commandsForTag.map(menu => menu.help.map(help =>
 
 
     let imgBuffer = await (await fetch('https://files.catbox.moe/3peljt.jpg')).buffer()
+
 await conn.sendMessage(m.chat, {
   image: imgBuffer,
   caption: menuText,
