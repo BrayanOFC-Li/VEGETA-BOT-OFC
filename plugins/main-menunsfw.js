@@ -20,7 +20,7 @@ let handler = async (m, { conn, usedPrefix: _p }) => {
 
 ${nsfwHelp}
 
-👑 © ⍴᥆ᥕᥱrᥱძ ᑲᥡ ${creador}
+global.dev
 `.trim()
 
     await m.react('🔞')
