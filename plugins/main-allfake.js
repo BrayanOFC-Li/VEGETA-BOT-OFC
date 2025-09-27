@@ -8,7 +8,7 @@ let AraChu2 = {
   getRandom: () => 'https://files.catbox.moe/9cbbyf.jpg'
 }
 
-let owner = ['18493907272']
+let owner = ['5216641784469']
 let conn = {
   getName: (jid) => 'Bot Owner'
 }
