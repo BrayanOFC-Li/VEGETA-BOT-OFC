@@ -33,7 +33,6 @@ let handler = async (m, { conn, usedPrefix: _p }) => {
 ╔═✪〘 🚀 GALACTIC MISSION REPORT 🚀 〙✪═╗
 ║ 🐉 Unidad: ${botname}
 ║ 👤 Creador: ${creador}
-║ 🌌 Sector Galáctico: ${mode}
 ║ 🔥 Nivel de Energía: ${exp}
 ║ 📿 Versión del Bot: ${version}
 ║ ⏱️ Tiempo de Operación: ${uptime}
