@@ -45,7 +45,6 @@ let menuText = `
 ╔═✪〘 🚀 GALACTIC MISSION REPORT 🚀 〙✪═╗
 ║ 🐉 Unidad: ${botname}
 ║ 👤 Creador: ${creador}
-║ 🏅 Clase de Guerrero: ${rango}
 ║ 🌌 Sector Galáctico: ${mode}
 ║ 🔥 Nivel de Energía: ${exp}
 ║ 📂 Registros en Archivo: ${totalreg}
