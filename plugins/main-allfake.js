@@ -258,15 +258,23 @@ try {
   }
 
   global.rcanalden2 = {
-    contextInfo: {
-      isForwarded: true,
-      forwardedNewsletterMessageInfo: {
-        newsletterJid: idchannel,
-        serverMessageId: 100,
-        newsletterName: namechannel,
-      },
+  contextInfo: {
+    isForwarded: true,
+    forwardedNewsletterMessageInfo: {
+      newsletterJid: idchannel,
+      serverMessageId: 100,
+      newsletterName: namechannel,
     },
-  }
+    externalAdReply: {
+      title: namechannel,
+      body: "Canal oficial",
+      thumbnailUrl: icono,
+      sourceUrl: "https://whatsapp.com/channel/0029VbBQ5sf4NVioq39Efn0v",
+      mediaType: 1,
+      renderLargerThumbnail: true
+    },
+  },
+}
 
   global.rcanalx = {
     contextInfo: {
