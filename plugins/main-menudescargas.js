@@ -36,12 +36,8 @@ ${descargasHelp}
             ...media.imageMessage,
             caption: menuText,
             contextInfo: {
-            ...global.rcanalden2
-            }
-          }
-        }
-      }
-    }, { userJid: m.sender, quoted: m })
+              ...global.rcanalden2
+}, { quoted: m })
 
     await conn.relayMessage(m.chat, msg.message, { messageId: msg.key.id })
 
