@@ -1,27 +1,40 @@
 //creado y editado por BrayanOFC
 import { xpRange } from '../lib/levelling.js'
+import ws from 'ws'
+import { generateWAMessageFromContent, prepareWAMessageMedia } from '@whiskeysockets/baileys'
 import fetch from 'node-fetch'
 
 const botname = global.botname || '❍⏤͟͟͞͞𝙑𝙀𝙂𝙀𝙏𝘼-𝙊𝙁𝘾࿐'
-const creador = 'BrayanOFC 👻'
-const version = '2.13.2' 
-
 let tags = {
   'serbot': 'SUB BOTS',
   'info': 'ZENO INFO',
   'main': 'MENUS INFO'
 }
+const creador = 'BrayanOFC 👻';
 
 let handler = async (m, { conn, usedPrefix: _p }) => {
   try {
-    if (!global.db) global.db = {}
-    if (!global.db.data) global.db.data = {}
-    if (!global.db.data.users) global.db.data.users = {}
-
     let userId = m.mentionedJid?.[0] || m.sender
-    let user = global.db.data.users[userId] || { exp: 0, level: 1, premium: false }
+    let user = global.db.data.users[userId]
+    let name = await conn.getName(userId)
+    let mode = global.opts?.self ? "Modo Privado " : "Modo Público "
+    let totalCommands = Object.keys(global.plugins).length
+    let totalreg = Object.keys(global.db.data.users).length
+    let uptime = clockString(process.uptime() * 1000)
 
+    const users = [...new Set(
+      (global.conns || []).filter(conn =>
+        conn.user && conn.ws?.socket?.readyState !== ws.CLOSED
+      )
+    )]
 
+    if (!user) {
+      global.db.data.users[userId] = { exp: 0, level: 1 }
+      user = global.db.data.users[userId]
+    }
+
+    let { exp, level } = user
+    let { min, xp, max } = xpRange(level, global.multiplier || 1)
     let help = Object.values(global.plugins).filter(plugin => !plugin.disabled).map(plugin => ({
       help: Array.isArray(plugin.help) ? plugin.help : (plugin.help ? [plugin.help] : []),
       tags: Array.isArray(plugin.tags) ? plugin.tags : (plugin.tags ? [plugin.tags] : []),
@@ -29,15 +42,15 @@ let handler = async (m, { conn, usedPrefix: _p }) => {
       premium: plugin.premium,
     }))
 
-
-    let menuText = `
+let menuText = `
 ╔═✪〘 🚀 GALACTIC MISSION REPORT 🚀 〙✪═╗
 ║ 🐉 Unidad: ${botname}
 ║ 👤 Creador: ${creador}
-║ 🌌 Modo: ${global.opts?.self ? 'Privado' : 'Público'}
-║ 🔥 Nivel de Energía: ${user.exp}
-║ 🚀 Versión: ${version}
-║ 🛠️ Protocolos Disponibles: ${Object.keys(global.plugins).length}
+║ 🌌 Sector Galáctico: ${mode}
+║ 🔥 Nivel de Energía: ${exp}
+║ 📂 Registros en Archivo: ${totalreg}
+║ ⏱️ Tiempo de Operación: ${uptime}
+║ 🛠️ Protocolos Disponibles: ${totalCommands}
 ╚════════════════════════════════════╝
 
 🚀╔═ *SECCIÓN DE MENÚS* ═╗🚀
@@ -53,23 +66,20 @@ ${commandsForTag.map(menu => menu.help.map(help =>
   return section
 }).filter(text => text !== '').join('\n')}
 
- 👑 © Powered by ${creador}
+ 👑 © ⍴᥆ᥕᥱrᥱძ ᑲᥡ ➳${creador}
 `.trim()
 
-    // Reacción estilo Vegeta
-    await conn.sendMessage(m.chat, { react: { text: '🐉', key: m.key } })
+    await m.react('🐉') 
 
-    // Envío con video estilo Itsuki
-    let vidBuffer = await (await fetch('https://files.catbox.moe/nl3zrv.mp4')).buffer()
-    await conn.sendMessage(m.chat, {
-      video: vidBuffer,
-      gifPlayback: true,
-      caption: menuText,
-      ...global.rcanalden2
-    }, { quoted: m })
+    let imgBuffer = await (await fetch('https://files.catbox.moe/3peljt.jpg')).buffer()
+await conn.sendMessage(m.chat, {
+  image: imgBuffer,
+  caption: menuText,
+  ...global.rcanalden2
+}, { quoted: m })
 
   } catch (e) {
-    await conn.sendMessage(m.chat, { text: `✖️ Error en menú Vegeta:\n${e}` }, { quoted: m })
+    conn.reply(m.chat, `✖️ Menú en modo Dragon Ball falló.\n\n${e}`, m)
     console.error(e)
   }
 }
@@ -77,19 +87,15 @@ ${commandsForTag.map(menu => menu.help.map(help =>
 handler.help = ['menu']
 handler.tags = ['main']
 handler.command = ['menu', 'allmenu', 'menú']
+handler.register = true
+
 export default handler
 
 function clockString(ms) {
-  let d = Math.floor(ms / 86400000) 
-  let h = Math.floor(ms / 3600000) % 24
+  let h = Math.floor(ms / 3600000)
   let m = Math.floor(ms / 60000) % 60
   let s = Math.floor(ms / 1000) % 60
-  let texto = []
-  if (d > 0) texto.push(`${d} ${d == 1 ? 'día' : 'días'}`)
-  if (h > 0) texto.push(`${h} ${h == 1 ? 'hora' : 'horas'}`)
-  if (m > 0) texto.push(`${m} ${m == 1 ? 'minuto' : 'minutos'}`)
-  if (s > 0) texto.push(`${s} ${s == 1 ? 'segundo' : 'segundos'}`)
-  return texto.length ? texto.join(', ') : '0 segundos'
+  return [h, m, s].map(v => v.toString().padStart(2, 0)).join(':')
 }
 
 function getRandomEmoji() {
