@@ -20,14 +20,14 @@ let handler = async (m, { conn, usedPrefix: _p }) => {
 
 ${nsfwHelp}
 
-👑 © ⍴᥆ᥕᥱrᥱძ ᑲᥡ  ➳𝐁𝐫𝐚𝐲𝐚𝐧𝐎𝐅𝐂ღ 
+👑 © ⍴᥆ᥕᥱrᥱძ ᑲᥡ  ➳𝐁𝐫𝐚𝐲𝐚𝐍𝐎𝐅𝐂ღ 
 `.trim()
 
     await m.react('🔞')
 
     let imgBuffer = await (await fetch('https://files.catbox.moe/vs2w90.jpg')).buffer()
     let media = await prepareWAMessageMedia({ image: imgBuffer }, { upload: conn.waUploadToServer })
-
+ 
     let msg = generateWAMessageFromContent(m.chat, {
       viewOnceMessage: {
         message: {
@@ -54,4 +54,3 @@ handler.command = ['menunsfw', 'menuerotico']
 handler.register = true
 
 export default handler
-
