@@ -72,25 +72,11 @@ ${commandsForTag.map(menu => menu.help.map(help =>
     await m.react('🐉') 
 
     let imgBuffer = await (await fetch('https://files.catbox.moe/3peljt.jpg')).buffer()
-    let media = await prepareWAMessageMedia(
-      { image: imgBuffer }, 
-      { upload: conn.waUploadToServer }
-    )
-
-    let msg = generateWAMessageFromContent(m.chat, {
-  viewOnceMessage: {
-    message: {
-      imageMessage: {
-        ...media.imageMessage,
-        caption: menuText,
-        contextInfo: {
-          mentionedJid: [m.sender],
-          ...(global.rcanal?.contextInfo || {})
-        }
-      }
-    }
-  }
-}, { userJid: m.sender, quoted: m })
+await conn.sendMessage(m.chat, {
+  image: imgBuffer,
+  caption: menuText,
+  ...global.rcanalden2
+}, { quoted: m })
 
   } catch (e) {
     conn.reply(m.chat, `✖️ Menú en modo Dragon Ball falló.\n\n${e}`, m)
