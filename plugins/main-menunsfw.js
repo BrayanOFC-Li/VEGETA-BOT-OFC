@@ -34,9 +34,7 @@ ${nsfwHelp}
           imageMessage: {
             ...media.imageMessage,
             caption: menuText,
-            contextInfo: {
             ...global.rcanalden2
-              }
             }
           }
         }
