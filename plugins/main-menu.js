@@ -85,13 +85,12 @@ ${commandsForTag.map(menu => menu.help.map(help =>
         caption: menuText,
         contextInfo: {
           mentionedJid: [m.sender],
-          ...global.rcanalx 
+          ...(global.rcanal?.contextInfo || {})
         }
       }
     }
   }
 }, { userJid: m.sender, quoted: m })
-    await conn.relayMessage(m.chat, msg.message, { messageId: msg.key.id })
 
   } catch (e) {
     conn.reply(m.chat, `✖️ Menú en modo Dragon Ball falló.\n\n${e}`, m)
