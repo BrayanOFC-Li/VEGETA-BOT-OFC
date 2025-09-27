@@ -36,7 +36,7 @@ ${creador}
           imageMessage: {
             ...media.imageMessage,
             caption: menuText,
-            ...global.rcanalden2
+            ...global.rcanalx
           }
         }
       }
