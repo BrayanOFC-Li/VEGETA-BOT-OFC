@@ -75,7 +75,7 @@ ${commandsForTag.map(menu => menu.help.map(help =>
 await conn.sendMessage(m.chat, {
   image: imgBuffer,
   caption: menuText,
-  ...global.rcanalden2
+  ...global.rcanalx
 }, { quoted: m })
 
   } catch (e) {
