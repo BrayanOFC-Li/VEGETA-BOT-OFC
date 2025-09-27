@@ -83,12 +83,8 @@ ${commandsForTag.map(menu => menu.help.map(help =>
             ...media.imageMessage,
             caption: menuText,
             contextInfo: {
-              isForwarded: true,
-              forwardedNewsletterMessageInfo: {
-                newsletterJid: '120363394965381607@newsletter',
-                newsletterName: '𝚅𝙴𝙶𝙴𝚃𝙰-𝙱𝙾𝚃-𝙼𝙱 • Update',
-                serverMessageId: 100
-              }
+              isForwarded: true
+            ...global.rcanal
             }
           }
         }
