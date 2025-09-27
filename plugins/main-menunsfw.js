@@ -35,7 +35,6 @@ ${nsfwHelp}
             ...media.imageMessage,
             caption: menuText,
             ...global.rcanalden2
-            }
           }
         }
       }
