@@ -114,7 +114,7 @@ try {
         description: "𝚅𝙴𝙶𝙴𝚃𝙰-𝙱𝙾𝚃-𝙼𝙱 Update🚀",
         previewType: "PHOTO",
   thumbnail: fs.readFileSync("./src/catalogo2.jpg"),
-        sourceUrl: "https://whatsapp.com/channel/0029VbBQ5sf4NVioq39Efn0v",
+        sourceUrl: "https://whatsapp.com/channel/0029Vb9P9ZU0gcfNusD1jG3d",
       }
     }
   }
