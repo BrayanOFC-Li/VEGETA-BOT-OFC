@@ -80,8 +80,8 @@ try {
   global.docss = pickRandom(global.docs)
   global.ephemeral = "86400"
   global.kontak2 = [
-    [owner[0], await conn.getName(owner[0] + '18493907272@s.whatsapp.net'), 'Desarrollador del bot', 'xzzysultra@gmail.com', true],
-    [owner[1], await conn.getName(owner[1] + '@s.whatsapp.net'), 'Desarrollador del bot', 'xzzysultra@gmail.com', true],
+    [owner[0], await conn.getName(owner[0] + '526641784469@s.whatsapp.net'), 'Desarrollador del bot', 'brayanofc70@gmail.com', true],
+    [owner[1], await conn.getName(owner[1] + '@s.whatsapp.net'), 'Desarrollador del bot', 'brayanofc70@gmail.com', true],
   ]
   global.pppkecil = AraChu2.getRandom()
   global.ucapan = ucapan()
