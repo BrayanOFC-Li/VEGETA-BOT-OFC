@@ -11,6 +11,7 @@ let tags = {
   'main': 'MENUS INFO'
 }
 const creador = 'BrayanOFC 👻';
+
 let handler = async (m, { conn, usedPrefix: _p }) => {
   try {
     let userId = m.mentionedJid?.[0] || m.sender
@@ -83,8 +84,8 @@ ${commandsForTag.map(menu => menu.help.map(help =>
             ...media.imageMessage,
             caption: menuText,
             contextInfo: {
-              isForwarded: true
-            ...global.rcanal
+              isForwarded: true,
+              forwardedNewsletterMessageInfo: global.rcanal || {}
             }
           }
         }
