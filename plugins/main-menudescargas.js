@@ -36,7 +36,7 @@ ${descargasHelp}
             ...media.imageMessage,
             caption: menuText,
             contextInfo: {
-              isForwarded: true
+            ...global.rcanalden2
             }
           }
         }
