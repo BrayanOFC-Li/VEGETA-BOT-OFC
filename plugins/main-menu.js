@@ -37,7 +37,6 @@ let handler = async (m, { conn, usedPrefix: _p }) => {
 ║ 🌌 Modo: ${global.opts?.self ? 'Privado' : 'Público'}
 ║ 🔥 Nivel de Energía: ${user.exp}
 ║ 🚀 Versión: ${version}
-║ ⏱️ Tiempo de Operación: ${uptime}
 ║ 🛠️ Protocolos Disponibles: ${Object.keys(global.plugins).length}
 ╚════════════════════════════════════╝
 
