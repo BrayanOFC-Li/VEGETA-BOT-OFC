@@ -59,5 +59,5 @@ handler.help = ['menuowner']
 handler.tags = ['main']
 handler.command = ['menuowner', 'menuadmin']
 handler.register = true
-
+handler.creador = true
 export default handler
