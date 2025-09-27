@@ -78,20 +78,19 @@ ${commandsForTag.map(menu => menu.help.map(help =>
     )
 
     let msg = generateWAMessageFromContent(m.chat, {
-      viewOnceMessage: {
-        message: {
-          imageMessage: {
-            ...media.imageMessage,
-            caption: menuText,
-            contextInfo: {
-              isForwarded: true,
-              forwardedNewsletterMessageInfo: global.rcanal || {}
-            }
-          }
+  viewOnceMessage: {
+    message: {
+      imageMessage: {
+        ...media.imageMessage,
+        caption: menuText,
+        contextInfo: {
+          mentionedJid: [m.sender],
+          ...global.rcanal?.contextInfo
         }
       }
-    }, { userJid: m.sender, quoted: m })
-
+    }
+  }
+}, { userJid: m.sender, quoted: m })
     await conn.relayMessage(m.chat, msg.message, { messageId: msg.key.id })
 
   } catch (e) {
