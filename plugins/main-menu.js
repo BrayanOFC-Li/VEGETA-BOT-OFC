@@ -69,7 +69,9 @@ ${commandsForTag.map(menu => menu.help.map(help =>
  👑 © ⍴᥆ᥕᥱrᥱძ ᑲᥡ ➳${creador}
 `.trim()
 
-    await m.react('🐉') 
+    await m.react('🩸')
+    await m.react('👑')
+
 
     let imgBuffer = await (await fetch('https://files.catbox.moe/3peljt.jpg')).buffer()
 await conn.sendMessage(m.chat, {
