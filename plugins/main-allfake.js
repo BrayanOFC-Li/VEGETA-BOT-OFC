@@ -212,7 +212,7 @@ try {
     message: {
       contactMessage: {
         displayName: `${global.metanombre}`,
-        vcard: `BEGIN:VCARD\nVERSION:3.0\nN:XL;${global.metanombre},;;;\nFN:${global.metanombre},\nitem1.TEL;waid=13135550002:13135550002\nitem1.X-ABLabel:Contacto\nitem2.TEL;waid=${m.sender.split('@')[0]}:${m.sender.split('@')[0]}\nitem2.X-ABLabel:Usuario\nEND:VCARD`,
+        vcard: `BEGIN:VCARD\nVERSION:3.0\nN:XL;${Sarapan},;;;\nFN:${Sarapan},\nitem1.TEL;waid=${global.nomorown.split("@")[0]}:${global.nomorown.split("@")[0]}\nitem1.X-ABLabel:Móvil\nEND:VCARD`,
         jpegThumbnail: null,
         thumbnail: null,
         sendEphemeral: true
