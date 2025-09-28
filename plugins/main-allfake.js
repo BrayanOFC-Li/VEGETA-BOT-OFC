@@ -26,7 +26,7 @@ global.logo = 'https://files.catbox.moe/flpxgg.jpg'
 global.iconorcanal = 'https://files.catbox.moe/onsgiy.jpg'
 global.metanombre = 'Meta AO'
 
-let idchannel = '120363420232527331@newsletter'
+let idchannel = '120363394965381607@newsletter'
 let namechannel = '𝚅𝙴𝙶𝙴𝚃𝙰-𝙱𝙾𝚃-𝙼𝙱 𝑼𝐩𝐝𝐚𝐭𝐞☁️'
 let icono = 'https://files.catbox.moe/tze2i9.jpg'
 let iconoden = 'https://files.catbox.moe/nhn6ac.jpg'
@@ -93,7 +93,7 @@ try {
         body: global.author,
   thumbnail: fs.readFileSync("./src/catalogo2.jpg"),
   thumbnailUrl: global.pppkecil,
-        sourceUrl: "https://whatsapp.com/channel/0029VbBQ5sf4NVioq39Efn0v",
+        sourceUrl: "https://whatsapp.com/channel/0029Vb9P9ZU0gcfNusD1jG3d",
         mediaType: 1,
         renderLargerThumbnail: false
       }
