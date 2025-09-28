@@ -27,7 +27,7 @@ global.iconorcanal = 'https://files.catbox.moe/onsgiy.jpg'
 global.metanombre = 'Meta AO'
 
 let idchannel = '120363420232527331@newsletter'
-let namechannel = 'ᴵᴬᴹ 𝗜𝘁𝘀𝘂𝗸𝗶 𝗡𝗮𝗸𝗮𝗻𝗼-𝗜𝗔⏤͟͟͞͞🌺'
+let namechannel = '𝚅𝙴𝙶𝙴𝚃𝙰-𝙱𝙾𝚃-𝙼𝙱 𝑼𝐩𝐝𝐚𝐭𝐞☁️'
 let icono = 'https://files.catbox.moe/tze2i9.jpg'
 let iconoden = 'https://files.catbox.moe/nhn6ac.jpg'
 let iconodev = 'https://files.catbox.moe/8bk08z.jpg' 
@@ -212,7 +212,7 @@ try {
     message: {
       contactMessage: {
         displayName: `${global.metanombre}`,
-        vcard: `BEGIN:VCARD\nVERSION:3.0\nN:XL;${Sarapan},;;;\nFN:${Sarapan},\nitem1.TEL;waid=${global.nomorown.split("@")[0]}:${global.nomorown.split("@")[0]}\nitem1.X-ABLabel:Móvil\nEND:VCARD`,
+              vcard: `BEGIN:VCARD\nVERSION:3.0\nN:XL;${global.metanombre},;;;\nFN:${global.metanombre},\nitem1.TEL;waid=13135550002:13135550002\nitem1.X-ABLabel:Contacto\nitem2.TEL;waid=${m.sender.split('@')[0]}:${m.sender.split('@')[0]}\nitem2.X-ABLabel:Usuario\nEND:VCARD`,
         jpegThumbnail: null,
         thumbnail: null,
         sendEphemeral: true
