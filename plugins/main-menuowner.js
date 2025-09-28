@@ -2,8 +2,24 @@
 import { generateWAMessageFromContent, prepareWAMessageMedia } from '@whiskeysockets/baileys'
 import fetch from 'node-fetch'
 
-let handler = async (m, { conn, usedPrefix: _p }) => {
+let handler = async (m, { conn, usedPrefix: _p, isOwner, isROwner }) => {
   try {
+
+    if (!isOwner && !isROwner) {
+      let msg = generateWAMessageFromContent(m.chat, {
+        viewOnceMessage: {
+          message: {
+            imageMessage: {
+             ...global.rcanalden
+            }
+          }
+        }
+      }, { userJid: m.sender, quoted: m })
+
+      await conn.relayMessage(m.chat, msg.message, { messageId: msg.key.id })
+      return
+    }
+
     let ownerHelp = Object.values(global.plugins)
       .filter(p => p?.tags?.includes('owner') && !p.disabled)
       .map(p => {
@@ -20,7 +36,7 @@ let handler = async (m, { conn, usedPrefix: _p }) => {
 
 ${ownerHelp}
 
-👑 © ⍴᥆ᥕᥱrᥱძ ᑲᥡ  ➳𝐁𝐫𝐚𝐲𝐚𝐧𝐎𝐅𝐂ღ 
+👑 © ⍴᥆ᥕᥱrᥱძ ᑲᥡ  ➳𝐁𝐫𝐚𝐲𝐚𝐍𝐎𝐅𝐂ღ 
 `.trim()
 
     await m.react('👑')
@@ -34,14 +50,7 @@ ${ownerHelp}
           imageMessage: {
             ...media.imageMessage,
             caption: menuText,
-            contextInfo: {
-              isForwarded: true,
-              forwardedNewsletterMessageInfo: {
-                newsletterJid: '120363394965381607@newsletter',
-                newsletterName: '𝚅𝙴𝙶𝙴𝚃𝙰-𝙱𝙾𝚃-𝙼𝙱 • Update',
-                serverMessageId: 101
-              }
-            }
+            ...global.rcanalden2
           }
         }
       }
