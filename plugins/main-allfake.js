@@ -614,7 +614,7 @@ function ucapan() {
 }
 
 function ThumbUrl() {
-  return pickRandom([https://files.catbox.moe/0q5oja.jpg'])
+  return pickRandom(['https://files.catbox.moe/0q5oja.jpg'])
 }
 
 export default handler
