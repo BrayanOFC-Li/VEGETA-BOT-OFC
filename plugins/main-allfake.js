@@ -236,6 +236,27 @@ try {
     }
   }
 
+global.rcanalr = {
+    contextInfo: {
+      isForwarded: true,
+      forwardedNewsletterMessageInfo: {
+        newsletterJid: idchannel,
+        serverMessageId: 100,
+        newsletterName: namechannel,
+      },
+      externalAdReply: {
+        title: '🩸𝐑𝐞𝐢𝐧𝐢𝐜𝐢𝐚𝐧𝐝𝐨 𝐄𝐥 𝐁𝐨𝐭 ',
+        body: '',
+        mediaUrl: null,
+        description: null,
+        previewType: "PHOTO",
+        thumbnailUrl: icono,
+        mediaType: 1,
+        renderLargerThumbnail: false,
+      },
+    },
+  }
+
   global.rcanalw = {
     contextInfo: {
       isForwarded: true,
