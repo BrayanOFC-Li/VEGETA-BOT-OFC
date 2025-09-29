@@ -22,30 +22,29 @@ const handler = async (m, { conn, args, usedPrefix }) => {
         messageText += `*🖇️ Url:* ${video.url}\n`;
 
         await conn.sendMessage(m.chat, {
-            viewOnce: true;
-            image: thumbnail,
-            caption: messageText,
-            footer: `𝖯𑄜𝗐𝖾𝗋𝖾𝖽 𝖻𝗒 BrayanOFC☁️`,
-            contextInfo: {
-                mentionedJid: [m.sender],
-                forwardingScore: 999,
-                isForwarded: true
-            },
-            buttons: [
-                {
-                    buttonId: `${usedPrefix}ytmp3 ${video.url}`,
-                    buttonText: { displayText: 'Audio' },
-                    type: 1,
-                },
-                {
-                    buttonId: `${usedPrefix}ytmp4 ${video.url}`,
-                    buttonText: { displayText: 'Video' },
-                    type: 1,
-                }
-            ],
-            headerType: 1,
-            viewOnce: true
-        }, { quoted: m });
+    viewOnce: true,
+    image: thumbnail,
+    caption: messageText,
+    footer: `𝖯𑄜𝗐𝖾𝗋𝖾𝖽 𝖻𝗒 BrayanOFC☁️`,
+    contextInfo: {
+        mentionedJid: [m.sender],
+        forwardingScore: 999,
+        isForwarded: true
+    },
+    buttons: [
+        {
+            buttonId: `${usedPrefix}ytmp3 ${video.url}`,
+            buttonText: { displayText: 'Audio' },
+            type: 1,
+        },
+        {
+            buttonId: `${usedPrefix}ytmp4 ${video.url}`,
+            buttonText: { displayText: 'Video' },
+            type: 1,
+        }
+    ],
+    headerType: 4
+}, { quoted: m });
 
         await m.react('✅');
     } catch (e) {
