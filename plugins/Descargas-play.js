@@ -23,13 +23,27 @@ const handler = async (m, { conn, args, usedPrefix, command }) => {
         await conn.sendMessage(m.chat, {
             image: thumbnail,
             caption: messageText,
+            footer: `𝖯𑄜𝗐𝖾𝗋𝖾𝖽 𝖻𝗒 BrayanOFC☁️`,
+            buttons: [
+                {
+                    buttonId: `${usedPrefix}ytmp3 ${video.url}`,
+                    buttonText: { displayText: '🎵 Descargar Audio' },
+                    type: 1,
+                },
+                {
+                    buttonId: `${usedPrefix}ytmp4 ${video.url}`,
+                    buttonText: { displayText: '🎬 Descargar Video' },
+                    type: 1,
+                }
+            ],
+            headerType: 4,
             contextInfo: {
                 mentionedJid: [m.sender],
                 forwardingScore: 999,
                 isForwarded: true,
                 externalAdReply: {
                     title: video.titulo,
-                    body: "Reproduce o descarga desde YouTube",
+                    body: "YouTube Downloader",
                     thumbnailUrl: video.miniatura,
                     sourceUrl: video.url,
                     mediaType: 1,
