@@ -251,7 +251,7 @@ global.rcanalr = {
         mediaUrl: null,
         description: null,
         previewType: "PHOTO",
-        thumbnailUrl: iconor,
+        thumbnailUrl: iconorest,
         mediaType: 1,
         renderLargerThumbnail: false,
       },
