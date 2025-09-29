@@ -4,7 +4,7 @@ let handler = async (m, { conn }) => {
   try {
     const start = Date.now();
 
-    await conn.reply(m.chat, '*🚀 Reiniciando bot...*', m, rcanal);
+    await conn.reply(m.chat, '*🚀 Reiniciando bot...*', m, rcanalr);
 
     await new Promise(resolve => setTimeout(resolve, 3000));
 
