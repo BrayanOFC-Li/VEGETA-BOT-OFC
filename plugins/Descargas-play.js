@@ -1,8 +1,7 @@
 import yts from 'yt-search';
 import fetch from 'node-fetch';
-import { prepareWAMessageMedia, generateWAMessageFromContent } from '@whiskeysockets/baileys';
 
-const handler = async (m, { conn, args, usedPrefix }) => {
+const handler = async (m, { conn, args, usedPrefix, command }) => {
     if (!args[0]) return conn.reply(m.chat, `🐉 Ingresa un texto para buscar en YouTube.\n> *Ejemplo:* ${usedPrefix + command} Shakira`, m);
 
     await m.react('🕓');
@@ -15,35 +14,28 @@ const handler = async (m, { conn, args, usedPrefix }) => {
         let thumbnail = await (await fetch(video.miniatura)).buffer();
 
         let messageText = `*Youtube - Download*\n\n`;
-        messageText += `${video.titulo}\n\n`;
-        messageText += `*⌛ Duración:* ${video.duracion || 'No disponible'}\n`;
-        messageText += `*👤 Autor:* ${video.canal || 'Desconocido'}\n`;
-        messageText += `*📆 Publicado:* ${convertTimeToSpanish(video.publicado)}\n`;
-        messageText += `*🖇️ Url:* ${video.url}\n`;
+        messageText += `🎵 *Título:* ${video.titulo}\n`;
+        messageText += `⌛ *Duración:* ${video.duracion || 'No disponible'}\n`;
+        messageText += `👤 *Autor:* ${video.canal || 'Desconocido'}\n`;
+        messageText += `📆 *Publicado:* ${convertTimeToSpanish(video.publicado)}\n`;
+        messageText += `🖇️ *Url:* ${video.url}\n`;
 
         await conn.sendMessage(m.chat, {
             image: thumbnail,
             caption: messageText,
-            footer: `𝖯𑄜𝗐𝖾𝗋𝖾𝖽 𝖻𝗒 BrayanOFC☁️`,
             contextInfo: {
                 mentionedJid: [m.sender],
                 forwardingScore: 999,
-                isForwarded: true
-            },
-            buttons: [
-                {
-                    buttonId: `${usedPrefix}ytmp3 ${video.url}`,
-                    buttonText: { displayText: 'Audio' },
-                    type: 1,
-                },
-                {
-                    buttonId: `${usedPrefix}ytmp4 ${video.url}`,
-                    buttonText: { displayText: 'Video' },
-                    type: 1,
+                isForwarded: true,
+                externalAdReply: {
+                    title: video.titulo,
+                    body: "Reproduce o descarga desde YouTube",
+                    thumbnailUrl: video.miniatura,
+                    sourceUrl: video.url,
+                    mediaType: 1,
+                    renderLargerThumbnail: true
                 }
-            ],
-            headerType: 1,
-            viewOnce: true
+            }
         }, { quoted: m });
 
         await m.react('✅');
@@ -67,7 +59,7 @@ async function searchVideos(query) {
             url: video.url,
             miniatura: video.thumbnail,
             canal: video.author.name,
-            publicado: video.timestamp || 'No disponible',
+            publicado: video.ago || 'No disponible',
             vistas: video.views || 'No disponible',
             duracion: video.duration.timestamp || 'No disponible'
         }));
