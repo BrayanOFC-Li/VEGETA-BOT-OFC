@@ -28,7 +28,7 @@ global.metanombre = 'Meta AO'
 
 let idchannel = '120363394965381607@newsletter'
 let namechannel = '𝚅𝙴𝙶𝙴𝚃𝙰-𝙱𝙾𝚃-𝙼𝙱 𝑼𝐩𝐝𝐚𝐭𝐞☁️'
-let iconor = 'let icono = 'https://files.catbox.moe/tze2i9.jpg'
+let iconor = 'https://files.catbox.moe/2v7j6r.jpg'
 let icono = 'https://files.catbox.moe/tze2i9.jpg'
 let iconoden = 'https://files.catbox.moe/nhn6ac.jpg'
 let iconodev = 'https://files.catbox.moe/8bk08z.jpg' 
