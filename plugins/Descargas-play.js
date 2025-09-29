@@ -65,24 +65,6 @@ handler.tags = ['descargas'];
 handler.command = ['play','play2'];
 export default handler;
 
-async function searchVideos(query) {
-    try {
-        const res = await yts(query);
-        return res.videos.slice(0, 10).map(video => ({
-            titulo: video.title,
-            url: video.url,
-            miniatura: video.thumbnail,
-            canal: video.author.name,
-            publicado: video.ago || 'No disponible',
-            vistas: video.views || 'No disponible',
-            duracion: video.duration.timestamp || 'No disponible'
-        }));
-    } catch (error) {
-        console.error('Error en yt-search:', error.message);
-        return [];
-    }
-}
-
 function convertTimeToSpanish(timeText) {
     return timeText
         .replace(/year/, 'año').replace(/years/, 'años')
