@@ -22,6 +22,7 @@ const handler = async (m, { conn, args, usedPrefix }) => {
         messageText += `*🖇️ Url:* ${video.url}\n`;
 
         await conn.sendMessage(m.chat, {
+            viewOnce: true;
             image: thumbnail,
             caption: messageText,
             footer: `𝖯𑄜𝗐𝖾𝗋𝖾𝖽 𝖻𝗒 BrayanOFC☁️`,
