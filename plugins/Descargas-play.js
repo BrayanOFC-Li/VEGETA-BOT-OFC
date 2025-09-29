@@ -50,7 +50,7 @@ const handler = async (m, { conn, args, usedPrefix }) => {
     } catch (e) {
         console.error(e);
         await m.react('✖️');
-        conn.reply(m.chat, '*`Error al buscar el video.`*' m);
+        conn.reply(m.chat, '*`Error al buscar el video.`*', m);
     }
 };
 
