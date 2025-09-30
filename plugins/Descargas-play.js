@@ -1,47 +1,86 @@
-import yts from 'yt-search';
+import ytdl from 'ytdl-core'
+import fs from 'fs'
+import path from 'path'
 
-const handler = async (m, { conn, text, usedPrefix, command }) => {
-  if (!text) {
-    throw `❗ Por favor ingresa un texto para buscar.\nEjemplo: ${usedPrefix + command} Nombre del video`;
-  }
+const ytmp3 = async (m, { conn, args }) => {
+  if (!args[0]) throw '❗ Ingresa un link de YouTube'
+  const url = args[0]
+  if (!ytdl.validateURL(url)) throw '❗ Link no válido'
 
+  m.react('⏳')
+  const filePath = path.join('./tmp', `${Date.now()}.mp3`)
+  const stream = ytdl(url, { filter: 'audioonly', quality: 'highestaudio' })
+  stream.pipe(fs.createWriteStream(filePath)).on('finish', async () => {
+    await conn.sendMessage(m.chat, {
+      audio: fs.readFileSync(filePath),
+      mimetype: 'audio/mpeg',
+      fileName: 'audio.mp3'
+    }, { quoted: m })
+    fs.unlinkSync(filePath)
+    m.react('✅')
+  })
+}
 
-  const search = await yts(text);
-  const videoInfo = search.all?.[0];
+const ytmp4 = async (m, { conn, args }) => {
+  if (!args[0]) throw '❗ Ingresa un link de YouTube'
+  const url = args[0]
+  if (!ytdl.validateURL(url)) throw '❗ Link no válido'
 
-  if (!videoInfo) {
-    throw '❗ No se encontraron resultados para tu búsqueda. Intenta con otro título.';
-  }
+  m.react('⏳')
+  const filePath = path.join('./tmp', `${Date.now()}.mp4`)
+  const stream = ytdl(url, { filter: 'videoandaudio', quality: '18' }) // 360p
+  stream.pipe(fs.createWriteStream(filePath)).on('finish', async () => {
+    await conn.sendMessage(m.chat, {
+      video: fs.readFileSync(filePath),
+      mimetype: 'video/mp4',
+      fileName: 'video.mp4'
+    }, { quoted: m })
+    fs.unlinkSync(filePath)
+    m.react('✅')
+  })
+}
 
-  const body = `\`\`\`El mejor bot de WhatsApp ⚔️
-  
-Elige una de las opciones para descargar:
-🎧 *Audio* o 📽️ *Video*
-  `;
+const ytmp3doc = async (m, { conn, args }) => {
+  if (!args[0]) throw '❗ Ingresa un link de YouTube'
+  const url = args[0]
+  if (!ytdl.validateURL(url)) throw '❗ Link no válido'
 
-  await conn.sendMessage(
-    m.chat,
-    {
-      image: { url: videoInfo.thumbnail },
-      caption: body,
-      footer: `𝕭𝖑𝖆𝖈𝖐 𝕮𝖑𝖔𝖛𝖊𝖗 ☘︎| ⚔️🥷`,
-      buttons: [
-      { buttonId: `.ytmp3 ${videoInfo.url}`, buttonText: { displayText: '🎧 Audio' } },
-        { buttonId: `.ytmp4 ${videoInfo.url}`, buttonText: { displayText: '📽️ Video' } },
-        { buttonId: `.ytmp3doc ${videoInfo.url}`, buttonText: { displayText: '💿 audio doc' } },
-        { buttonId: `.ytmp4doc ${videoInfo.url}`, buttonText: { displayText: '🎥 vídeo doc' } },
-      ],
-      viewOnce: true,
-      headerType: 4,
-    },
-    { quoted: m }
-  );
-  m.react('✅'); // Reacción de éxito
-};
+  m.react('⏳')
+  const filePath = path.join('./tmp', `${Date.now()}.mp3`)
+  const stream = ytdl(url, { filter: 'audioonly', quality: 'highestaudio' })
+  stream.pipe(fs.createWriteStream(filePath)).on('finish', async () => {
+    await conn.sendMessage(m.chat, {
+      document: fs.readFileSync(filePath),
+      mimetype: 'audio/mpeg',
+      fileName: 'audio.mp3'
+    }, { quoted: m })
+    fs.unlinkSync(filePath)
+    m.react('✅')
+  })
+}
 
-handler.command = ['play', 'playvid', 'play2'];
-handler.tags = ['downloader']
-handler.group = true
-handler.limit = 6
+const ytmp4doc = async (m, { conn, args }) => {
+  if (!args[0]) throw '❗ Ingresa un link de YouTube'
+  const url = args[0]
+  if (!ytdl.validateURL(url)) throw '❗ Link no válido'
 
-export default handler;
+  m.react('⏳')
+  const filePath = path.join('./tmp', `${Date.now()}.mp4`)
+  const stream = ytdl(url, { filter: 'videoandaudio', quality: '18' })
+  stream.pipe(fs.createWriteStream(filePath)).on('finish', async () => {
+    await conn.sendMessage(m.chat, {
+      document: fs.readFileSync(filePath),
+      mimetype: 'video/mp4',
+      fileName: 'video.mp4'
+    }, { quoted: m })
+    fs.unlinkSync(filePath)
+    m.react('✅')
+  })
+}
+
+export const commands = [
+  { command: ['ytmp3'], handler: ytmp3 },
+  { command: ['ytmp4'], handler: ytmp4 },
+  { command: ['ytmp3doc'], handler: ytmp3doc },
+  { command: ['ytmp4doc'], handler: ytmp4doc }
+]
