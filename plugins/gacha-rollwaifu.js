@@ -47,7 +47,10 @@ let handler = async (m, { conn }) => {
     if (cooldowns[userId] && now < cooldowns[userId]) {
         const remainingTime = Math.ceil((cooldowns[userId] - now) / 1000)
         const seconds = remainingTime % 60
-        return conn.reply(m.chat, `《✧》Debes esperar ${seconds} segundos para usar *#rw* de nuevo.`, m, rcanalden2)
+        return conn.sendMessage(m.chat, {
+            image: { url: 'https://i.ibb.co/4t2N7Yh/cooldown.jpg' }, // Pon tu imagen para cooldown
+            caption: `《✧》Debes esperar ${seconds} segundos para usar *#rw* de nuevo.`
+        }, { quoted: m, ...rcanalden2 })
     }
 
     try {
@@ -84,7 +87,10 @@ let handler = async (m, { conn }) => {
         cooldowns[userId] = now + 15 * 1000
 
     } catch (error) {
-        conn.reply(m.chat, `✘ Error al cargar el personaje: ${error.message}`, m, rcanalden2)
+        await conn.sendMessage(m.chat, {
+            image: { url: 'https://i.ibb.co/YjvM8yG/error.jpg' }, // Pon tu imagen de error
+            caption: `✘ Error al cargar el personaje: ${error.message}`
+        }, { quoted: m, ...rcanalden2 })
     }
 }
 
