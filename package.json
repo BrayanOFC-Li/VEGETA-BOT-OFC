@@ -31,7 +31,6 @@
 },
 "license": "MIT-License",
 "dependencies": {
-"@bochilteam/scraper": "^6.0.0",
 "@vitalets/google-translate-api": "^8.0.0",
 "@whiskeysockets/baileys": "github:ds6/meta",
 "acrcloud": "^1.4.0",
@@ -49,7 +48,6 @@
 "hispamemes": "^1.0.7",
 "human-readable": "^0.2.1",
 "jimp": "^0.16.1",
-"cheerio": "^1.0.0",
 "jsdom": "^20.0.1",
 "lodash": "^4.17.21",
 "lowdb": "^3.0.0",
