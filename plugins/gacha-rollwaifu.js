@@ -43,12 +43,11 @@ let handler = async (m, { conn }) => {
     const userId = m.sender
     const now = Date.now()
 
-    // Cooldown de 15 minutos
+    // Cooldown de 15 segundos
     if (cooldowns[userId] && now < cooldowns[userId]) {
         const remainingTime = Math.ceil((cooldowns[userId] - now) / 1000)
-        const minutes = Math.floor(remainingTime / 60)
         const seconds = remainingTime % 60
-        return conn.sendMessage(m.chat, { text: `《✧》Debes esperar ${seconds} segundos* para usar *#rw* de nuevo.` }, { quoted: m })
+        return conn.reply(m.chat, `《✧》Debes esperar ${seconds} segundos* para usar *#rw* de nuevo.`, m, rcanalx)
     }
 
     try {
@@ -70,26 +69,22 @@ let handler = async (m, { conn }) => {
 ❖ Fuente » *${randomCharacter.source}*
 ✦ ID: *${randomCharacter.id}*`
 
-        // Menciones si ya está reclamado
-        const mentions = userEntry ? [userEntry.userId] : []
+        // Mandar primero la imagen
+        await conn.sendMessage(m.chat, { image: { url: randomImage } }, { quoted: m })
 
-        // Enviar imagen con texto
-        await conn.sendMessage(m.chat, {
-            image: { url: randomImage },
-            caption: message,
-            mentions
-        }, { quoted: m })
+        // Ahora el texto con conn.reply + rcanalx
+        await conn.reply(m.chat, message, m, { mentions: userEntry ? [userEntry.userId] : [], ...rcanalx })
 
-        // Si está libre, actualizar archivo
+        // Guardar cambios si el personaje estaba libre
         if (!randomCharacter.user) {
             await saveCharacters(characters)
         }
 
-        // Cooldown 15 minutos
+        // Cooldown 15 segundos
         cooldowns[userId] = now + 15 * 1000
 
     } catch (error) {
-        conn.sendMessage(m.chat, { text: `✘ Error al cargar el personaje: ${error.message}` }, { quoted: m })
+        conn.reply(m.chat, `✘ Error al cargar el personaje: ${error.message}`, m, rcanalx)
     }
 }
 
