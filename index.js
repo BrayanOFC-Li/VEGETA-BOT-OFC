@@ -37,16 +37,17 @@ const { CONNECTING } = ws
 const { chain } = lodash
 const PORT = process.env.PORT || process.env.SERVER_PORT || 3000
 
-console.log(chalk.bold.redBright(`\x1b[32m
+
+console.log(chalk.bold.blueBright(`
 ╔═══════════════════════════════════════╗
 ║   ⚡ VEGETA-BOT-MB ACTIVADO ⚡         ║
 ║  ʕ•ᴥ•ʔ ¡Prepárate para la batalla!    ║
 ╚═══════════════════════════════════════╝
-\x1b[0m`))
+`))
 
-console.log(chalk.bold.magentaBright('╔═══════════════════════════════════════╗'))
-console.log(chalk.bold.cyanBright('\x1b[32m║       Desarrollado por BrayanOFC 👑   ║\x1b[0'))
-console.log(chalk.bold.magentaBright('╚═══════════════════════════════════════╝\n'))
+console.log(chalk.bold.blueBright('╔═══════════════════════════════════════╗'))
+console.log(chalk.bold.blueBright('║       Desarrollado por BrayanOFC 👑   ║'))
+console.log(chalk.bold.blueBright('╚═══════════════════════════════════════╝\n'))
 
 protoType()
 serialize()
