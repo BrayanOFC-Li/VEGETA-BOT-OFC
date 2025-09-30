@@ -62,25 +62,35 @@ const handler = async (m, { conn, text, command }) => {
       })
     }
 
-    // ─── VIDEO
-    else if (command === 'ytv' || command === 'ytmp4') {
-      m.react('⏳')
-      const filePath = path.join('./tmp', `${Date.now()}.mp4`)
-      const stream = ytdl(videoInfo.url, { filter: 'videoandaudio', quality: '18' }) // 360p
-      const writeStream = fs.createWriteStream(filePath)
-      stream.pipe(writeStream)
+    else if (command === 'yta' || command === 'ytmp3') {
+  m.react('⏳')
+  const filePath = path.join('./tmp', `${Date.now()}.mp3`)
+  const stream = ytdl(videoInfo.url, { filter: 'audioonly', quality: 'highestaudio' })
+  const writeStream = fs.createWriteStream(filePath)
 
-      writeStream.on('finish', async () => {
-        await conn.sendMessage(m.chat, {
-          video: { url: filePath },
-          mimetype: 'video/mp4',
-          fileName: `${videoInfo.title}.mp4`,
-          caption: `📺 Aquí tienes tu video, disfrútalo~ 💕`
-        }, { quoted: m })
-        fs.unlinkSync(filePath)
-        m.react('✅')
-      })
+  stream.pipe(writeStream)
+
+  writeStream.on('error', (err) => {
+    console.error("Error al descargar audio:", err)
+    m.reply("❌ No pude descargar el audio, gomen~ 😿")
+  })
+
+  writeStream.on('finish', async () => {
+    try {
+      await conn.sendMessage(m.chat, {
+        audio: fs.readFileSync(filePath), // aseguramos que se lea completo
+        mimetype: 'audio/mpeg',
+        fileName: `${videoInfo.title}.mp3`,
+        caption: `🎧 Aquí tienes tu canción, onii-chan~ 🌸`
+      }, { quoted: m })
+      fs.unlinkSync(filePath) // borrar después
+      m.react('✅')
+    } catch (err) {
+      console.error("Error al enviar audio:", err)
+      m.reply("❌ No pude enviar el audio 😿")
     }
+  })
+}
 
     else {
       throw "⚠️ Usa *.play + nombre*, *.yta + nombre* o *.ytv + nombre* 🌸"
