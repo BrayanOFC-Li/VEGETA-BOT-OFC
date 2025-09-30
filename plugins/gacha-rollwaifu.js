@@ -69,12 +69,11 @@ let handler = async (m, { conn }) => {
 ❖ Fuente » *${randomCharacter.source}*
 ✦ ID: *${randomCharacter.id}*`
 
-        // Imagen + texto en un solo mensaje
         await conn.sendMessage(m.chat, {
             image: { url: randomImage },
             caption,
             mentions: userEntry ? [userEntry.userId] : []
-        }, { quoted: m, ...rcanalx })
+        }, { quoted: m, ...rcanalden2 })
 
         // Guardar cambios si el personaje estaba libre
         if (!randomCharacter.user) {
@@ -85,7 +84,7 @@ let handler = async (m, { conn }) => {
         cooldowns[userId] = now + 15 * 1000
 
     } catch (error) {
-        conn.reply(m.chat, `✘ Error al cargar el personaje: ${error.message}`, m, rcanalx)
+        conn.reply(m.chat, `✘ Error al cargar el personaje: ${error.message}`, m, rcanalden2)
     }
 }
 
