@@ -1,4 +1,5 @@
 import yts from 'yt-search';
+import fetch from 'node-fetch';
 
 const handler = async (m, { conn, text, usedPrefix, command }) => {
   if (!text) throw `🌸✨ Ingresa el nombre de la música que quieres escuchar, onii-chan~ 💕`;
@@ -17,6 +18,7 @@ const handler = async (m, { conn, text, usedPrefix, command }) => {
                `🔗 𝗟𝗶𝗻𝗸: ${videoInfo.url}\n\n` +
                `> ✨ Aquí tienes tu dosis de música, onii-chan~ 💖`;
 
+  // ─── PLAY ───────────────────────────────
   if (command === 'play' || command === 'play2' || command === 'playvid') {
     await conn.sendMessage(m.chat, {
       image: { url: videoInfo.thumbnail },
@@ -37,42 +39,53 @@ const handler = async (m, { conn, text, usedPrefix, command }) => {
     }, { quoted: fkontak });
     m.react('🍓');
 
+  // ─── YT AUDIO ───────────────────────────────
   } else if (command === 'yta' || command === 'ytmp3') {
     m.react('⏳');
     let audio;
     try {
       audio = await (await fetch(`https://api.alyachan.dev/api/youtube?url=${videoInfo.url}&type=mp3&apikey=Gata-Dios`)).json();
+      if (!audio.data?.url) throw new Error('API 1 falló');
     } catch {
       try {
         audio = await (await fetch(`https://delirius-apiofc.vercel.app/download/ytmp3?url=${videoInfo.url}`)).json();
+        if (!audio.url && !audio.result?.url) throw new Error('API 2 falló');
       } catch {
         audio = await (await fetch(`https://api.vreden.my.id/api/ytmp3?url=${videoInfo.url}`)).json();
       }
     }
 
-    if (!audio.data || !audio.data.url) throw "😿 No pude conseguir el audio, onii-chan…";
-    conn.sendFile(m.chat, audio.data.url, videoInfo.title, `🎧 Aquí está tu canción, disfruta~ 🌸`, m, null, { mimetype: "audio/mpeg", asDocument: false });
+    const audioUrl = audio.data?.url || audio.url || audio.result?.url;
+    if (!audioUrl) throw "😿 No pude conseguir el audio, onii-chan…";
+
+    conn.sendFile(m.chat, audioUrl, videoInfo.title + ".mp3", `🎧 Aquí está tu canción, disfruta~ 🌸`, m, null, { mimetype: "audio/mpeg", asDocument: false });
     m.react('✅');
 
+  // ─── YT VIDEO ───────────────────────────────
   } else if (command === 'ytv' || command === 'ytmp4') {
     m.react('⏳');
     let video;
     try {
       video = await (await fetch(`https://api.alyachan.dev/api/youtube?url=${videoInfo.url}&type=mp4&apikey=Gata-Dios`)).json();
+      if (!video.data?.url) throw new Error('API 1 falló');
     } catch {
       try {
         video = await (await fetch(`https://delirius-apiofc.vercel.app/download/ytmp4?url=${videoInfo.url}`)).json();
+        if (!video.url && !video.result?.url) throw new Error('API 2 falló');
       } catch {
         video = await (await fetch(`https://api.vreden.my.id/api/ytmp4?url=${videoInfo.url}`)).json();
       }
     }
 
-    if (!video.data || !video.data.url) throw "😿 No pude conseguir el video, onii-chan…";
+    const videoUrl = video.data?.url || video.url || video.result?.url;
+    if (!videoUrl) throw "😿 No pude conseguir el video, onii-chan…";
+
     await conn.sendMessage(m.chat, {
-      video: { url: video.data.url },
+      video: { url: videoUrl },
       mimetype: "video/mp4",
-      caption: `📺 Aquí está tu video~ 💕`,
+      caption: `📺 Aquí está tu video, disfrútalo~ 💕`,
     }, { quoted: m });
+
     m.react('✅');
 
   } else {
@@ -86,3 +99,13 @@ handler.tags = ['dl'];
 handler.register = true;
 
 export default handler;
+
+// Función auxiliar para extraer ID de YouTube
+const getVideoId = (url) => {
+  const regex = /(?:v=|\/)([0-9A-Za-z_-]{11}).*/;
+  const match = url.match(regex);
+  if (match) {
+    return match[1];
+  }
+  throw new Error("Invalid YouTube URL");
+};
