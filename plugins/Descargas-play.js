@@ -38,7 +38,7 @@ if (m.isWABusiness) {
 await conn.sendFile(
 m.chat,
 yt_play[0].thumbnail,
-'error.jpg',
+'catalogo.jpg',
 texto1 + '\n> Para descargas en audio reacciona con "🎶"\n> Para descargar en video reacciona con "📽"',
 m,
 null,
