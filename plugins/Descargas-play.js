@@ -1,7 +1,5 @@
 import yts from 'yt-search'
 import ytdl from 'ytdl-core'
-import fs from 'fs'
-import path from 'path'
 
 const handler = async (m, { conn, text, command }) => {
   try {
@@ -22,7 +20,7 @@ const handler = async (m, { conn, text, command }) => {
                  `🔗 𝗟𝗶𝗻𝗸: ${videoInfo.url}\n\n` +
                  `> ✨ Aquí tienes tu dosis de música, onii-chan~ 💖`
 
-    // ─── PLAY (solo muestra info + botones)
+    // ─── PLAY (info + botones)
     if (command === 'play' || command === 'play2' || command === 'playvid') {
       await conn.sendMessage(m.chat, {
         image: { url: videoInfo.thumbnail },
@@ -44,36 +42,30 @@ const handler = async (m, { conn, text, command }) => {
       m.react('🍓')
     }
 
-    // ─── YT AUDIO (descarga directa con ytdl-core)
+    // ─── YT AUDIO (stream directo)
     else if (command === 'yta' || command === 'ytmp3') {
       m.react('⏳')
       const stream = ytdl(videoInfo.url, { filter: 'audioonly', quality: 'highestaudio' })
-      const filePath = path.join('./tmp', `${videoInfo.videoId}.mp3`)
-      const writeStream = fs.createWriteStream(filePath)
-      stream.pipe(writeStream)
-      writeStream.on('finish', async () => {
-        await conn.sendFile(m.chat, filePath, `${videoInfo.title}.mp3`, `🎧 Aquí está tu canción, disfruta~ 🌸`, m)
-        fs.unlinkSync(filePath) // borrar después de enviar
-        m.react('✅')
-      })
+      await conn.sendMessage(m.chat, {
+        audio: stream,
+        mimetype: 'audio/mpeg',
+        fileName: `${videoInfo.title}.mp3`,
+        caption: `🎧 Aquí está tu canción, disfruta~ 🌸`
+      }, { quoted: m })
+      m.react('✅')
     }
 
-    // ─── YT VIDEO (descarga directa con ytdl-core)
+    // ─── YT VIDEO (stream directo)
     else if (command === 'ytv' || command === 'ytmp4') {
       m.react('⏳')
-      const stream = ytdl(videoInfo.url, { filter: 'videoandaudio', quality: '18' }) // calidad mp4 360p
-      const filePath = path.join('./tmp', `${videoInfo.videoId}.mp4`)
-      const writeStream = fs.createWriteStream(filePath)
-      stream.pipe(writeStream)
-      writeStream.on('finish', async () => {
-        await conn.sendMessage(m.chat, {
-          video: { url: filePath },
-          mimetype: "video/mp4",
-          caption: `📺 Aquí está tu video, disfrútalo~ 💕`,
-        }, { quoted: m })
-        fs.unlinkSync(filePath) // borrar después de enviar
-        m.react('✅')
-      })
+      const stream = ytdl(videoInfo.url, { filter: 'videoandaudio', quality: '18' }) // 360p
+      await conn.sendMessage(m.chat, {
+        video: stream,
+        mimetype: 'video/mp4',
+        fileName: `${videoInfo.title}.mp4`,
+        caption: `📺 Aquí está tu video, disfrútalo~ 💕`
+      }, { quoted: m })
+      m.react('✅')
     }
 
     else {
