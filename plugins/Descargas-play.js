@@ -1,4 +1,4 @@
-import fg from 'api-dylux'
+/*import fg from 'api-dylux'
 import yts from 'yt-search'
 import fetch from 'node-fetch'
 
@@ -220,4 +220,4 @@ function eYear(txt) {
         return L
     }
     return txt
-}
+}*/
