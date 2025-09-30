@@ -1,223 +1,111 @@
-/*import fg from 'api-dylux'
-import yts from 'yt-search'
-import fetch from 'node-fetch'
+import yts from 'yt-search';
+import fetch from 'node-fetch';
 
-let handler = async (m, { conn, args, usedPrefix, text, command }) => {
-let lister = ["mp3", "yta", "audio", "ytv", "video", "vídeo", "mp4", "mp3doc", "ytadoc", "audiodoc", "mp4doc", "ytvdoc", "videodoc", "vídeodoc"]
+const handler = async (m, { conn, text, usedPrefix, command }) => {
+  if (!text) throw `🌸✨ Ingresa el nombre de la música que quieres escuchar, onii-chan~ 💕`;
 
-let [feature, inputs, inputs_, inputs__, inputs___] = text.split(" ")
-if (!lister.includes(feature)) return conn.reply(m.chat, `❤️‍🔥 Ingresa el formato en que deseas descargar más el titulo de un video o musica de YouTube.\n\nEjemplo : ${usedPrefix + command} *mp3* SUICIDAL-IDOL - ecstacy\n\nFormatos disponibles :\n${usedPrefix + command} *mp3*\n${usedPrefix + command} *mp3doc*\n${usedPrefix + command} *mp4*\n${usedPrefix + command} *mp4doc*`, m, rcanalden2)
-if (lister.includes(feature)) {
-if (feature == "mp3" || feature == "yta" || feature == "audio") {
-if (!inputs) return conn.reply(m.chat, `❤️‍🔥 Ingresa el título de un video o canción de YouTube.\n\n*Ejemplo:*\n*${usedPrefix + command}* YOUR NAME - Sparkle Sub español  english`, m, rcanalden2)
-await m.react('🕓')
-let res = await yts(text)
-let vid = res.videos[0]
-let q = '128kbps'
-let txt = `*乂  Y O U T U B E  -  P L A Y*\n\n`
-        txt += `        ✩   *Título* : ${vid.title}\n`
-        txt += `        ✩   *Duración* : ${vid.timestamp}\n`
-        txt += `        ✩   *Visitas* : ${vid.views}\n`
-        txt += `        ✩   *Autor* : ${vid.author.name}\n`
-        txt += `        ✩   *Publicado* : ${eYear(vid.ago)}\n`
-        txt += `        ✩   *Url* : ${'https://youtu.be/' + vid.videoId}\n\n`
-        txt += `*- ↻ El audio se esta enviando espera un momento .*`
-await conn.sendFile(m.chat, vid.thumbnail, 'catalogo.jpg', txt, m, null, rcanalden2)
-try {
-let yt = await fg.yta(vid.url, q)
-let { title, dl_url, size } = yt
-let limit = 300
+  const search = await yts(text);
+  if (!search.all || search.all.length === 0) {
+    throw "❌ No encontré nada… gomen~ 😿";
+  }
 
-if (size.split('MB')[0] >= limit) return conn.reply(m.chat,`El archivo pesa mas de ${limit} MB, se canceló la Descarga.`, m, rcanalden2).then(_ => m.react('✖️'))
+  const videoInfo = search.all[0];
+  const body = `🍓 𝗧𝗶𝘁𝘂𝗹𝗼: *${videoInfo.title}*\n` +
+               `🌸 𝗖𝗮𝗻𝗮𝗹: *${videoInfo.author.name || 'Desconocido'}*\n` +
+               `👀 𝗩𝗶𝘀𝘁𝗮𝘀: *${videoInfo.views}*\n` +
+               `⏳ 𝗗𝘂𝗿𝗮𝗰𝗶𝗼𝗻: *${videoInfo.timestamp}*\n` +
+               `📅 𝗣𝘂𝗯𝗹𝗶𝗰𝗮𝗱𝗼: *${videoInfo.ago}*\n` +
+               `🔗 𝗟𝗶𝗻𝗸: ${videoInfo.url}\n\n` +
+               `> ✨ Aquí tienes tu dosis de música, onii-chan~ 💖`;
 
-await conn.sendMessage(m.chat, { audio: { url: dl_url }, fileName: title + '.mp3', mimetype: 'audio/mp4' }, { quoted: m })
-await m.react('✅')
-} catch {
-try {
-let yt = await fg.ytmp3(vid.url, q)
-let { title, dl_url, size } = yt
-let limit = 100
+  // ─── PLAY ───────────────────────────────
+  if (command === 'play' || command === 'play2' || command === 'playvid') {
+    await conn.sendMessage(m.chat, {
+      image: { url: videoInfo.thumbnail },
+      caption: body,
+      footer: "🌸 Itsuki-Bot • powered by Nakano family 💕",
+      buttons: [
+        {
+          buttonId: `.yta ${videoInfo.url}`,
+          buttonText: { displayText: '🎶 Descargar MP3' },
+        },
+        {
+          buttonId: `.ytv ${videoInfo.url}`,
+          buttonText: { displayText: '🎬 Descargar MP4' },
+        },
+      ],
+      viewOnce: true,
+      headerType: 4,
+    }, { quoted: fkontak });
+    m.react('🍓');
 
-if (size.split('MB')[0] >= limit) return conn.reply(m.chat,`El archivo pesa mas de ${limit} MB, se canceló la Descarga.`, m, rcanal).then(_ => m.react('✖️'))
-
-await conn.sendMessage(m.chat, { audio: { url: dl_url }, fileName: title + '.mp3', mimetype: 'audio/mp4' }, { quoted: m })
-await m.react('✅')
-} catch {
-await m.react('✖️')
-}}}
-
-if (feature == "mp4" || feature == "ytv" || feature == "video" || feature == "video") {
-if (!inputs) return conn.reply(m.chat, `💌 Ingresa el título de un video o canción de YouTube.\n\n*Ejemplo:*\n*${usedPrefix + command}* Alan Walker - Sing Me To Sleep`, m, rcanalden2)
-await m.react('🕓')
-let res = await yts(text)
-let vid = res.videos[0]
-let q = '360p'
-let txt = `*乂  Y O U T U B E  -  P L A Y*\n\n`
-        txt += `        ✩   *Título* : ${vid.title}\n`
-        txt += `        ✩   *Duración* : ${vid.timestamp}\n`
-        txt += `        ✩   *Visitas* : ${vid.views}\n`
-        txt += `        ✩   *Autor* : ${vid.author.name}\n`
-        txt += `        ✩   *Publicado* : ${eYear(vid.ago)}\n`
-        txt += `        ✩   *Url* : ${'https://youtu.be/' + vid.videoId}\n\n`
-        txt += `*- ↻ El video se esta enviando espera un momento. . .*`
-await conn.sendFile(m.chat, vid.thumbnail, 'catalogo2.jpg', txt, m, rcanalden2)
-try {
-let yt = await fg.ytv(vid.url, q)
-let { title, dl_url, size } = yt
-let limit = 100
-
-if (size.split('MB')[0] >= limit) return conn.reply(m.chat,`El archivo pesa mas de ${limit} MB, se canceló la Descarga.`, m, rcanalden2).then(_ => m.react('✖️'))
-
-await conn.sendFile(m.chat, dl_url, 'yt.jpg', `${vid.title}\n⇆ㅤㅤ◁ㅤㅤ❚❚ㅤㅤ▷ㅤㅤ↻\n00:15 ━━━━●────── ${vid.timestamp}`, m, null, rcanal)
-await m.react('✅')
-} catch {
-try {
-let yt = await fg.ytmp4(vid.url, q)
-let { title, dl_url, size } = yt
-let limit = 100
-
-if (size.split('MB')[0] >= limit) return conn.reply(m.chat,`El archivo pesa mas de ${limit} MB, se canceló la Descarga.`, m, rcanalden2).then(_ => m.react('✖️'))
-
-await conn.sendFile(m.chat, dl_url, 'yt.jpg', `${vid.title}\n⇆ㅤㅤ◁ㅤㅤ❚❚ㅤㅤ▷ㅤㅤ↻\n00:15 ━━━━●────── ${vid.timestamp}`, m, null, rcanal)
-await m.react('✅')
-} catch {
-await m.react('✖️')
-}}}
-
-if (feature == "mp3doc" || feature == "ytadoc" || feature == "audiodoc") {
-if (!inputs) return conn.reply(m.chat, `☁️ Ingresa el título de un video o canción de YouTube.\n\n*Ejemplo:*\n*${usedPrefix + command}* Alan Walker - Sing Me To Sleep`, m, rcanalden2)
-await m.react('🕓')
-let res = await yts(text)
-let vid = res.videos[0]
-let q = '128kbps'
-let txt = `*乂  Y O U T U B E  -  P L A Y*\n\n`
-        txt += `        ✩   *Título* : ${vid.title}\n`
-        txt += `        ✩   *Duración* : ${vid.timestamp}\n`
-        txt += `        ✩   *Visitas* : ${vid.views}\n`
-        txt += `        ✩   *Autor* : ${vid.author.name}\n`
-        txt += `        ✩   *Publicado* : ${eYear(vid.ago)}\n`
-        txt += `        ✩   *Url* : ${'https://youtu.be/' + vid.videoId}\n\n`
-        txt += `*- ↻ El audio se esta enviando espera un momento, soy lento. . .*`
-await conn.sendFile(m.chat, vid.thumbnail, 'thumbnail.jpg', txt, m, null, rcanalden2)
-try {
-let yt = await fg.yta(vid.url, q)
-let { title, dl_url, size } = yt
-let limit = 300
-
-if (size.split('MB')[0] >= limit) return conn.reply(m.chat,`El archivo pesa mas de ${limit} MB, se canceló la Descarga.`, m, rcanal).then(_ => m.react('✖️'))
-
-await conn.sendMessage(m.chat, { document: { url: dl_url }, caption: '', mimetype: 'audio/mpeg', fileName: `${vid.title}.mp3`}, { quoted: m })
-await m.react('✅')
-} catch {
-try {
-let yt = await fg.ytmp3(vid.url, q)
-let { title, dl_url, size } = yt
-let limit = 100
-
-if (size.split('MB')[0] >= limit) return conn.reply(m.chat,`El archivo pesa mas de ${limit} MB, se canceló la Descarga.`, m, rcanalden2).then(_ => m.react('✖️'))
-
-await conn.sendMessage(m.chat, { document: { url: dl_url }, caption: '', mimetype: 'audio/mpeg', fileName: `${vid.title}.mp3`}, { quoted: m })
-} catch {
-await m.react('✖️')
-    }}}
-
-if (feature == "mp4doc" || feature == "ytvdoc" || feature == "videodoc" || feature == "videodoc") {
-if (!inputs) return conn.reply(m.chat, `💨 Ingresa el título de un video o canción de YouTube.\n\n*Ejemplo:*\n*${usedPrefix + command}* Alan Walker - Sing Me To Sleep`, m, rcanalden2)
-await m.react('🕓')
-let res = await yts(text)
-let vid = res.videos[0]
-let q = '360p'
-let txt = `*乂  Y O U T U B E  -  P L A Y*\n\n`
-        txt += `        ✩   *Título* : ${vid.title}\n`
-        txt += `        ✩   *Duración* : ${vid.timestamp}\n`
-        txt += `        ✩   *Visitas* : ${vid.views}\n`
-        txt += `        ✩   *Autor* : ${vid.author.name}\n`
-        txt += `        ✩   *Publicado* : ${eYear(vid.ago)}\n`
-        txt += `        ✩   *Url* : ${'https://youtu.be/' + vid.videoId}\n\n`
-        txt += `*- ↻ El video se esta enviando espera un momento, soy lenta. . .*`
-await conn.sendFile(m.chat, vid.thumbnail, 'catalogo2.jpg', txt, m, null, rcanalden2)
-try {
-let yt = await fg.ytv(vid.url, q)
-let { title, dl_url, size } = yt
-let limit = 300
-
-if (size.split('MB')[0] >= limit) return conn.reply(m.chat,`El archivo pesa mas de ${limit} MB, se canceló la Descarga.`, m, rcanalden2).then(_ => m.react('✖️'))
-
-await conn.sendMessage(m.chat, { document: { url: dl_url }, caption: '', mimetype: 'video/mp4', fileName: `${vid.title}` + `.mp4`}, {quoted: m })
-await m.react('✅')
-} catch {
-try {
-let yt = await fg.ytmp4(vid.url, q)
-let { title, dl_url, size } = yt
-let limit = 300
-
-if (size.split('MB')[0] >= limit) return conn.reply(m.chat,`El archivo pesa mas de ${limit} MB, se canceló la Descarga.`, m, rcanal).then(_ => m.react('✖️'))
-
-await conn.sendMessage(m.chat, { document: { url: dl_url }, caption: '', mimetype: 'video/mp4', fileName: `${vid.title}` + `.mp4`}, {quoted: m })
-await m.react('✅')
-} catch {
-await m.react('✖️')
-}}}}}
-handler.help = ['play2'].map(v => v + " *<formato> <búsqueda>*")
-handler.tags = ['downloader']
-handler.command = ['play', 'play2', 'mp3', 'yta', 'audio', 'mp4', 'ytv', 'video', 'mp3doc', 'ytadoc', 'audiodoc', 'mp4doc', 'ytvdoc', 'videodoc']
-handler.register = true 
-//handler.limit = 1
-export default handler
-
-function eYear(txt) {
-    if (!txt) {
-        return '×'
+  // ─── YT AUDIO ───────────────────────────────
+  } else if (command === 'yta' || command === 'ytmp3') {
+    m.react('⏳');
+    let audio;
+    try {
+      audio = await (await fetch(`https://api.alyachan.dev/api/youtube?url=${videoInfo.url}&type=mp3&apikey=Gata-Dios`)).json();
+      if (!audio.data?.url) throw new Error('API 1 falló');
+    } catch {
+      try {
+        audio = await (await fetch(`https://delirius-apiofc.vercel.app/download/ytmp3?url=${videoInfo.url}`)).json();
+        if (!audio.url && !audio.result?.url) throw new Error('API 2 falló');
+      } catch {
+        audio = await (await fetch(`https://api.vreden.my.id/api/ytmp3?url=${videoInfo.url}`)).json();
+      }
     }
-    if (txt.includes('month ago')) {
-        var T = txt.replace("month ago", "").trim()
-        var L = 'hace '  + T + ' mes'
-        return L
+
+    const audioUrl = audio.data?.url || audio.url || audio.result?.url;
+    if (!audioUrl) throw "😿 No pude conseguir el audio, onii-chan…";
+
+    conn.sendFile(m.chat, audioUrl, videoInfo.title + ".mp3", `🎧 Aquí está tu canción, disfruta~ 🌸`, m, null, { mimetype: "audio/mpeg", asDocument: false });
+    m.react('✅');
+
+  // ─── YT VIDEO ───────────────────────────────
+  } else if (command === 'ytv' || command === 'ytmp4') {
+    m.react('⏳');
+    let video;
+    try {
+      video = await (await fetch(`https://api.alyachan.dev/api/youtube?url=${videoInfo.url}&type=mp4&apikey=Gata-Dios`)).json();
+      if (!video.data?.url) throw new Error('API 1 falló');
+    } catch {
+      try {
+        video = await (await fetch(`https://delirius-apiofc.vercel.app/download/ytmp4?url=${videoInfo.url}`)).json();
+        if (!video.url && !video.result?.url) throw new Error('API 2 falló');
+      } catch {
+        video = await (await fetch(`https://api.vreden.my.id/api/ytmp4?url=${videoInfo.url}`)).json();
+      }
     }
-    if (txt.includes('months ago')) {
-        var T = txt.replace("months ago", "").trim()
-        var L = 'hace ' + T + ' meses'
-        return L
-    }
-    if (txt.includes('year ago')) {
-        var T = txt.replace("year ago", "").trim()
-        var L = 'hace ' + T + ' año'
-        return L
-    }
-    if (txt.includes('years ago')) {
-        var T = txt.replace("years ago", "").trim()
-        var L = 'hace ' + T + ' años'
-        return L
-    }
-    if (txt.includes('hour ago')) {
-        var T = txt.replace("hour ago", "").trim()
-        var L = 'hace ' + T + ' hora'
-        return L
-    }
-    if (txt.includes('hours ago')) {
-        var T = txt.replace("hours ago", "").trim()
-        var L = 'hace ' + T + ' horas'
-        return L
-    }
-    if (txt.includes('minute ago')) {
-        var T = txt.replace("minute ago", "").trim()
-        var L = 'hace ' + T + ' minuto'
-        return L
-    }
-    if (txt.includes('minutes ago')) {
-        var T = txt.replace("minutes ago", "").trim()
-        var L = 'hace ' + T + ' minutos'
-        return L
-    }
-    if (txt.includes('day ago')) {
-        var T = txt.replace("day ago", "").trim()
-        var L = 'hace ' + T + ' dia'
-        return L
-    }
-    if (txt.includes('days ago')) {
-        var T = txt.replace("days ago", "").trim()
-        var L = 'hace ' + T + ' dias'
-        return L
-    }
-    return txt
-}*/
+
+    const videoUrl = video.data?.url || video.url || video.result?.url;
+    if (!videoUrl) throw "😿 No pude conseguir el video, onii-chan…";
+
+    await conn.sendMessage(m.chat, {
+      video: { url: videoUrl },
+      mimetype: "video/mp4",
+      caption: `📺 Aquí está tu video, disfrútalo~ 💕`,
+    }, { quoted: m });
+
+    m.react('✅');
+
+  } else {
+    throw "⚠️ Comando desconocido, prueba con *.play + canción* 🌸";
+  }
+};
+
+handler.help = ['play', 'playvid', 'ytv', 'ytmp4', 'yta', 'play2', 'ytmp3'];
+handler.command = ['play', 'playvid', 'ytv', 'ytmp4', 'yta', 'play2', 'ytmp3'];
+handler.tags = ['dl'];
+handler.register = true;
+
+export default handler;
+
+// Función auxiliar para extraer ID de YouTube
+const getVideoId = (url) => {
+  const regex = /(?:v=|\/)([0-9A-Za-z_-]{11}).*/;
+  const match = url.match(regex);
+  if (match) {
+    return match[1];
+  }
+  throw new Error("Invalid YouTube URL");
+};
