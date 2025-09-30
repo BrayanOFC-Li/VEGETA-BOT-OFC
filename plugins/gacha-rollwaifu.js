@@ -47,7 +47,7 @@ let handler = async (m, { conn }) => {
     if (cooldowns[userId] && now < cooldowns[userId]) {
         const remainingTime = Math.ceil((cooldowns[userId] - now) / 1000)
         const seconds = remainingTime % 60
-        return conn.reply(m.chat, `《✧》Debes esperar ${seconds} segundos para usar *#rw* de nuevo.`, m, rcanalx)
+        return conn.reply(m.chat, `《✧》Debes esperar ${seconds} segundos para usar *#rw* de nuevo.`, m, rcanalden2)
     }
 
     try {
