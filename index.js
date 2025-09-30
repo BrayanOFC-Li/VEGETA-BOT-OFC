@@ -170,7 +170,7 @@ if (!!phoneNumber) {
 addNumber = phoneNumber.replace(/[^0-9]/g, '')
 } else {
 do {
-phoneNumber = await question(chalk.bgBlack(chalk.bold.greenBright(`[ ✿ ]  Por favor, Ingrese el número de WhatsApp.\n${chalk.bold.blueBright('---> ')}`)))
+phoneNumber = await question(chalk.bold.blueBright(chalk.bold.blueBright(`[ ✿ ]  Por favor, Ingrese el número de WhatsApp.\n${chalk.bold.blueBright('---> ')}`)))
 phoneNumber = phoneNumber.replace(/\D/g,'')
 if (!phoneNumber.startsWith('+')) {
 phoneNumber = `+${phoneNumber}`
