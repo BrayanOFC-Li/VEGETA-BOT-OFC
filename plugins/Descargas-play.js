@@ -1,11 +1,12 @@
 import yts from 'yt-search'
 import ytdl from 'ytdl-core'
+import fs from 'fs'
+import path from 'path'
 
 const handler = async (m, { conn, text, command }) => {
   try {
-    if (!text) throw `🌸✨ Ingresa el nombre o link de la música/video que quieras, onii-chan~ 💕`
+    if (!text) throw `🌸 Ingresa el nombre o link del video que quieras, onii-chan~`
 
-    // Buscar en YouTube si no es link
     let videoInfo
     if (ytdl.validateURL(text)) {
       const info = await ytdl.getInfo(text)
@@ -20,7 +21,7 @@ const handler = async (m, { conn, text, command }) => {
       }
     } else {
       const search = await yts(text)
-      if (!search.all || search.all.length === 0) throw "❌ No encontré nada… gomen~ 😿"
+      if (!search.all || search.all.length === 0) throw "❌ No encontré nada, gomen~"
       videoInfo = search.all[0]
     }
 
@@ -30,7 +31,7 @@ const handler = async (m, { conn, text, command }) => {
                  `⏳ 𝗗𝘂𝗿𝗮𝗰𝗶𝗼𝗻: *${videoInfo.timestamp}*\n` +
                  `📅 𝗣𝘂𝗯𝗹𝗶𝗰𝗮𝗱𝗼: *${videoInfo.ago}*\n` +
                  `🔗 𝗟𝗶𝗻𝗸: ${videoInfo.url}\n\n` +
-                 `> ✨ Aquí tienes tu pedido, onii-chan~ 💖`
+                 `> ✨ Pedido listo, onii-chan~ 💖`
 
     // ─── INFO
     if (command === 'play') {
@@ -44,27 +45,41 @@ const handler = async (m, { conn, text, command }) => {
     // ─── AUDIO
     else if (command === 'yta' || command === 'ytmp3') {
       m.react('⏳')
+      const filePath = path.join('./tmp', `${Date.now()}.mp3`)
       const stream = ytdl(videoInfo.url, { filter: 'audioonly', quality: 'highestaudio' })
-      await conn.sendMessage(m.chat, {
-        audio: stream,
-        mimetype: 'audio/mpeg',
-        fileName: `${videoInfo.title}.mp3`,
-        caption: `🎧 Aquí está tu canción, disfruta~ 🌸`
-      }, { quoted: m })
-      m.react('✅')
+      const writeStream = fs.createWriteStream(filePath)
+      stream.pipe(writeStream)
+
+      writeStream.on('finish', async () => {
+        await conn.sendMessage(m.chat, {
+          audio: { url: filePath },
+          mimetype: 'audio/mpeg',
+          fileName: `${videoInfo.title}.mp3`,
+          caption: `🎧 Aquí tienes tu canción, disfruta~ 🌸`
+        }, { quoted: m })
+        fs.unlinkSync(filePath) // borra el archivo después
+        m.react('✅')
+      })
     }
 
     // ─── VIDEO
     else if (command === 'ytv' || command === 'ytmp4') {
       m.react('⏳')
-      const stream = ytdl(videoInfo.url, { filter: 'videoandaudio', quality: '18' }) // 360p estable
-      await conn.sendMessage(m.chat, {
-        video: stream,
-        mimetype: 'video/mp4',
-        fileName: `${videoInfo.title}.mp4`,
-        caption: `📺 Aquí está tu video, disfrútalo~ 💕`
-      }, { quoted: m })
-      m.react('✅')
+      const filePath = path.join('./tmp', `${Date.now()}.mp4`)
+      const stream = ytdl(videoInfo.url, { filter: 'videoandaudio', quality: '18' }) // 360p
+      const writeStream = fs.createWriteStream(filePath)
+      stream.pipe(writeStream)
+
+      writeStream.on('finish', async () => {
+        await conn.sendMessage(m.chat, {
+          video: { url: filePath },
+          mimetype: 'video/mp4',
+          fileName: `${videoInfo.title}.mp4`,
+          caption: `📺 Aquí tienes tu video, disfrútalo~ 💕`
+        }, { quoted: m })
+        fs.unlinkSync(filePath)
+        m.react('✅')
+      })
     }
 
     else {
@@ -72,7 +87,7 @@ const handler = async (m, { conn, text, command }) => {
     }
   } catch (e) {
     console.error("Error en comando:", e)
-    m.reply("❌ Onii-chan~, ocurrió un error inesperado 😿")
+    m.reply("❌ Ocurrió un error inesperado 😿")
   }
 }
 
