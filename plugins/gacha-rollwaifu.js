@@ -47,7 +47,7 @@ let handler = async (m, { conn }) => {
     if (cooldowns[userId] && now < cooldowns[userId]) {
         const remainingTime = Math.ceil((cooldowns[userId] - now) / 1000)
         const seconds = remainingTime % 60
-        return conn.reply(m.chat, `《✧》Debes esperar ${seconds} segundos* para usar *#rw* de nuevo.`, m, rcanalx)
+        return conn.reply(m.chat, `《✧》Debes esperar ${seconds} segundos para usar *#rw* de nuevo.`, m, rcanalx)
     }
 
     try {
@@ -62,18 +62,19 @@ let handler = async (m, { conn }) => {
             ? `Reclamado por @${randomCharacter.user.split('@')[0]}` 
             : 'Libre'
 
-        const message = `❀ Nombre » *${randomCharacter.name}*
+        const caption = `❀ Nombre » *${randomCharacter.name}*
 ⚥ Género » *${randomCharacter.gender}*
 ✰ Valor » *${randomCharacter.value}*
 ♡ Estado » ${statusMessage}
 ❖ Fuente » *${randomCharacter.source}*
 ✦ ID: *${randomCharacter.id}*`
 
-        // Mandar primero la imagen
-        await conn.sendMessage(m.chat, { image: { url: randomImage } }, { quoted: m })
-
-        // Ahora el texto con conn.reply + rcanalx
-        await conn.reply(m.chat, message, m, { mentions: userEntry ? [userEntry.userId] : [], ...rcanalx })
+        // Imagen + texto en un solo mensaje
+        await conn.sendMessage(m.chat, {
+            image: { url: randomImage },
+            caption,
+            mentions: userEntry ? [userEntry.userId] : []
+        }, { quoted: m, ...rcanalx })
 
         // Guardar cambios si el personaje estaba libre
         if (!randomCharacter.user) {
