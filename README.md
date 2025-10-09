@@ -6,7 +6,7 @@
 
 [![Typing SVG](https://readme-typing-svg.demolab.com?font=Fira+Code&pause=1000&color=0033FF&center=true&vCenter=true&width=600&lines=Bienvenido+Guerrero+Z;VEGETA-BOT-MB+🔥;Creado+desde+0+por+BrayanOFC;El+Orgullo+Saiyajin+en+tu+mano;¡Supera+a+Kakaroto!)](https://git.io/typing-svg)
 
-![VEGETA](https://qu.ax/ijJBG.png)
+![VEGETA](https://files.catbox.moe/6limn2.jpg)
 
 > ⚡ Versión: **2.13.2**  
 > 👑 Creador: **BrayanOFC – El Príncipe Saiyajin**
