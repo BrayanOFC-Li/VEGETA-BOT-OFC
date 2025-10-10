@@ -11,7 +11,7 @@ async function apiAdonix(url) {
 }
 
 async function apiJoseDev(url) {
-  const apiURL = `https://api.sylphy.xyz/download/ytmp4?url=${encodeURIComponent(url)}&apikey=sylphy-fbb9`
+  const apiURL = `https://api.sylphy.xyz/download/ytmp4?url=${encodeURIComponent(url)}&apikey=sylphy-9fe8`
   const res = await fetch(apiURL)
   const data = await res.json()
 
