@@ -77,8 +77,6 @@ let handler = async (m, { conn, text, usedPrefix }) => {
       { quoted: m }
     )
 
-    await conn.reply(m.chat, `✅ ¡Descarga completada, insecto! 🎵\n🎶 *${title}*`, m, ctxOk)
-
   } catch (e) {
     console.error('💀 Error en play:', e)
     await conn.reply(m.chat, `💢 ¡Error, maldito insecto!: ${e.message}`, m, ctxErr)
