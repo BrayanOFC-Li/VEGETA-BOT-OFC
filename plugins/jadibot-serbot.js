@@ -279,7 +279,7 @@ export async function vegetaJadiBot(options) {
       }
     }, 60000)
 
-    let handler = await import('../handler.js')
+    let handler = await import('../ProcesadorVegeta/handler.js')
     let creloadHandler = async function (restatConn) {
       try {
         const Handler = await import(`../handler.js?update=${Date.now()}`).catch(console.error)
