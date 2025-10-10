@@ -54,7 +54,6 @@ let handler = async (m, { conn, text, usedPrefix }) => {
 👤 *Autor:* ${video.author.name}
 🔗 *Enlace:* ${video.url}
 
-🌐 *Fuente:* ${fuente}
 ⚡ *Poder de descarga Saiyajin completado.* ⚡
 > "¡Jamás seré superado por Kakarotto!"
 `.trim()
