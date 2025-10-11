@@ -4,37 +4,23 @@ async function handler(m, { conn }) {
     await m.react('👑');
 
     // Primer creador
-    const name1 = 'BrayanOFC 👻';
-    const empresa1 = '✨ BrayanOFC - Servicios Tecnológicos ✨';
-    const numero1 = '+52 664 178 4469';
-    const dash1 = 'https://dash.skyultraplus.com';
-    const github1 = 'https://github.com/BrayanOFC';
-    const imagen1 = 'https://raw.githubusercontent.com/BrayanOFC/Adiciones/main/Contenido%2F2025090166.jpg';
+    const name = 'BrayanOFC 👻';
+    const empresa = '✨ BrayanOFC - Servicios Tecnológicos ✨';
+    const numero = '+52 664 178 4469';
+    const dash = 'https://dash.skyultraplus.com';
+    const github = 'https://github.com/BrayanOFC';
+    const imagen = 'https://raw.githubusercontent.com/BrayanOFC/Adiciones/main/Contenido%2F2025090166.jpg';
 
-    // Segundo creador
-    const name2 = '👑 The-Carlos';
-    const empresa2 = '⚡ Servicios Tecnológicos ⚡';
-    const numero2 = '+52 55 4487 6071';
-    const github2 = 'https://github.com/Thecarlos19';
-
-    const caption = `
+       const caption = `
 ┏━━━━━━━━━━━━━━━━━━━┓
 ┃     👑 *CREADOR INFO* 👑      
 ┗━━━━━━━━━━━━━━━━━━━┛
 
-🌟 *Nombre:* ${name1}
-🏢 *Empresa:* ${empresa1}
-📱 *Número:* ${numero1}
-🔗 *Dash Sky:* ${dash1}
-💻 *GitHub:* ${github1}
-
-━━━━━━━━━━━━━━━━━━━━━━━
-👑 *Segundo Creador* 👑
-━━━━━━━━━━━━━━━━━━━━━━━
-🌟 *Nombre:* ${name2}
-🏢 *Empresa:* ${empresa2}
-📱 *Número:* ${numero2}
-💻 *GitHub:* ${github2}
+🌟 *Nombre:* ${name}
+🏢 *Empresa:* ${empresa}
+📱 *Número:* ${numero}
+🔗 *Dash Sky:* ${dash}
+💻 *GitHub:* ${github}
 
 ━━━━━━━━━━━━━━━━━━━━━━━
 ⚡ *Atención 24/7 • Calidad • Confianza* ⚡
@@ -47,8 +33,8 @@ async function handler(m, { conn }) {
         externalAdReply: {
           title: '👑 BrayanOFC 👑',
           body: 'Servicios Tecnológicos de Alto Nivel 🚀',
-          thumbnailUrl: imagen1,
-          sourceUrl: dash1,
+          thumbnailUrl: imagen,
+          sourceUrl: dash,
           mediaType: 1,
           renderLargerThumbnail: true
         },
