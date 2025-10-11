@@ -3,7 +3,6 @@ async function handler(m, { conn }) {
   try {
     await m.react('👑');
 
-    // Primer creador
     const name = 'BrayanOFC 👻';
     const empresa = '✨ BrayanOFC - Servicios Tecnológicos ✨';
     const numero = '+52 664 178 4469';
